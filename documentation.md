@@ -89,3 +89,54 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
 | :---     | :---    | :---      | :---      | :---      | :---    | :---   | :---   
 | "93db2af2-ce28-424a-b12c-822be27e671d" | "8922c504-68d4-4c13-88fa-c05f271803b4" | "e9a94732-176e-4b4b-bf03-32461ada23bb" | "Growing Health Concerns in Uganda" | "Learn about health issues with pregnancy" | "In an interview with... " | "health" | "published" |
 
+
+# Endpoints 
+
+## Interview 
+
+For creating accounts and logging in: 
+
+1. #### `createUser`
+
+    object sent by frontend: 
+    
+    ``` JSON 
+    {
+      "first_name" : String,
+      "last_name" : String,
+      "email": String,
+      "password": String
+    }
+    ```
+     
+    object returned by backend: 
+    
+    ``` JSON 
+    {
+      "message" : "Registration successful!"
+      "statusCode" : 200
+    } 
+    ```
+    
+    
+2. #### `getUser`
+
+     object sent by frontend: 
+    
+    ``` JSON 
+    {
+      "email": String,
+      "password": String
+    }
+    ```
+    
+    object returned by backend: 
+    
+    ``` JSON 
+    {
+      "message" : "Login successful!"
+      "statusCode" : 200
+    } 
+    ```
+    
+
