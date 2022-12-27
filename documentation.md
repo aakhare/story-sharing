@@ -94,8 +94,6 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
 
 ## Interview 
 
-For creating accounts and logging in: 
-
 1. #### `createUser`
 
     object sent by frontend: 
@@ -121,7 +119,7 @@ For creating accounts and logging in:
     
 2. #### `getUser`
 
-     object sent by frontend: 
+     object sent by frontend (use `POST` request): 
     
     ``` JSON 
     {
@@ -134,9 +132,91 @@ For creating accounts and logging in:
     
     ``` JSON 
     {
-      "message" : "Login successful!"
-      "statusCode" : 200
+      "message" : "Login successful!",
+      "statusCode" : 200,
+      "user_id" : String
     } 
     ```
     
+3. #### `createProfile`
 
+    object sent by frontend: 
+    
+    ``` JSON 
+    {
+        "name": String,
+        "contact_info": String
+    }
+    ```
+    
+    object returned by backend: 
+    
+    ``` JSON 
+    { 
+        "message": "Profile created!",
+        "statusCode": 200,
+        "profile_id": String,
+    }
+    ```
+    
+ 4. #### `getProfile`
+
+
+    object sent by backend: 
+    
+    ``` JSON 
+    {
+        "name": String,
+        "contact_info": String
+    }
+    ```
+    
+ 5. #### `updateProfile` 
+
+    object sent by frontend (send the whole object): 
+    
+    ``` JSON 
+    {
+        "name": String,
+        "contact_info": String
+    }
+    
+    ```
+    
+    object sent by backend: 
+    
+    ``` JSON 
+    {
+        "message": "Update saved!", 
+        "statusCode": 200
+    }
+    ```
+    
+ 6. #### `createInterview`
+
+    object sent by frontend:
+    
+    ``` JSON 
+    {
+        "profile_id": String, 
+        "format" : String,
+        "title" : String,
+        "content" : String, 
+        "description" : String, 
+        "is_anonymous" : Boolean,
+        "digital_signature" : String,
+    }
+    ```
+    
+    object sent by backend:
+    
+    ``` JSON
+    {
+        "message": "Interview created!", 
+        "statusCode": 200, 
+        "interview_id": String
+    }
+    ```
+  
+
+    
