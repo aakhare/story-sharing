@@ -95,7 +95,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
 ## Interview 
 
 1. #### `createUser`
-
+    endpoint url: https://y2rucoc6kiwrvvt4xqnfektnwi0dwqnz.lambda-url.us-west-1.on.aws/
     object sent by frontend: 
     
     ``` JSON 
@@ -119,7 +119,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
     
 2. #### `getUser`
-
+    endpoint url: https://nokdeyzkn7r4vbm5jp6ktpffae0svcvg.lambda-url.us-west-1.on.aws/
      object sent by frontend (use `POST` request): 
     
     ``` JSON 
@@ -141,6 +141,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```
     
 3. #### `createProfile`
+    endpoint url: https://gwl2m3ztomvuaz62gzm2cp3gey0ispie.lambda-url.us-west-1.on.aws/
 
     object sent by frontend: 
     
@@ -162,7 +163,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```
     
  4. #### `getProfile`
-
+    endpoint url: https://7wtpsdk6azrf5lltdgxpj4xsgi0ceelm.lambda-url.us-west-1.on.aws/
 
     object sent by backend: 
     
@@ -195,7 +196,8 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```
     
  6. #### `createInterview`
-
+    endpoint url: https://s4bh4zczxpw4imhwzb5ixhfccm0vzvxe.lambda-url.us-west-1.on.aws/
+    
     object sent by frontend:
     
     ``` JSON 
