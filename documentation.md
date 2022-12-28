@@ -112,7 +112,8 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ``` JSON 
     {
       "message" : "Registration successful!"
-      "statusCode" : 200
+      "statusCode" : 200,
+      "user_id" : String
     } 
     ```
     
@@ -123,6 +124,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
     ``` JSON 
     {
+      "user_id": String,
       "email": String,
       "password": String
     }
@@ -134,7 +136,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     {
       "message" : "Login successful!",
       "statusCode" : 200,
-      "user_id" : String
+      
     } 
     ```
     
