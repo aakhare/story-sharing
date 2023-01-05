@@ -11,6 +11,7 @@ const ddb = new DynamoDBClient({
  * 
  * This function returns all fields from the user table (except password) after being given a user_id. 
  * Works successfully on AWS console.
+ * 
  */
 
 

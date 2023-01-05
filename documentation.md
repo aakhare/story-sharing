@@ -111,7 +111,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
     ``` JSON 
     {
-      "message" : "Registration successful!"
+      "message" : "Registration successful!",
       "statusCode" : 200
     } 
     ```
@@ -192,9 +192,63 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
- 6. #### `createInterview`
+ 6. #### `createPreSignedURL`
+
+    object sent by frontend (as POST request): 
+
+    The `interviewContent_type` will be either audio, video, or text. The `URLtype` will be format of the url (such as mp3 or mp4). 
+
+    ``` JSON
+    {
+        "profile_id": String,
+        "interviewContent_type": String, 
+        "interviewFile": {
+            "URLtype": String
+            
+        },
+        "digitalSignatureFile": {
+            "URLtype": String
+        }
+    }
+    ```
+
+    object returned by backend:
+
+    The `interviewSignedURL` will be the URL from the S3 Bucket that will be used to upload media content. The `digitalSignatureSignedURL` will be the URL from the S3 Bucket that will be used to upload the digital signature with every interview.  
+
+    ``` JSON
+    {
+        "interviewSignedURL": String,
+        "digitalSignatureSignedURL": String,
+        "interviewFileKey": String,
+        "digitalSignatureFileKey": String
+    }
+    ```
+
+ 7. #### `uploadInterviewMedia
+    
+    url: the url obtained from the `interviewSignedURL` and `digitalSignatureSignedURL` respectively
+
+    This will be a `PUT` request made by the frontend to upload media content to the S3 Bucket. Two `PUT` requests will be required to handle uploading both the interview and digital signature. 
+    
+    object sent by frontend: 
+
+    all frontend has to do is upload the file 
+
+    object returned by backend: 
+
+    ``` JSON
+    {
+        "message": "Uploaded successfully!",
+        "status": 200
+    }
+    ```
+
+ 8. #### `createInterview`
 
     object sent by frontend:
+
+    The `content` and `digital_signature` will be the values from the `interviewFileKey` and `digitalSignatureFileKey` obtained from the backend when the  `createPreSignedURL` request was made.
     
     ``` JSON 
     {
@@ -208,7 +262,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
-    object sent by backend:
+    object returned by backend:
     
     ``` JSON
     {

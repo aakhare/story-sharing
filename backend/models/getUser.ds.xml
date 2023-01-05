@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GetUserInputModel",
+  "type": "object",
+  "properties": {
+    "user_id": { "type": "string" }
+  }
+}

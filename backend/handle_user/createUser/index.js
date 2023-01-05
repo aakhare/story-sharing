@@ -7,25 +7,20 @@ const ddb = new DynamoDBClient({
     region: 'us-west-1'
 })
 
-/****
- * 
- * This function creates user and enters it in the user table on dyn(except password) after being given a user_id. 
- * Works successfully on AWS console.
- */
-
 
 export const handler = async(event) => {
-    const body = event.body; //data 
-    const queryParams = event.queryStringParamaters; //data from frontend
-    const method = event.requestContext.http.method; //get, post, put, delete
-    const {email, password, first_name, last_name} = JSON.parse(body); 
+    console.log(event);
+    //const queryParams = event.queryStringParamaters; //data from frontend
+    const method = event.requestContext.httpMethod; //get, post, put, delete
+    const {email, password, first_name, last_name} = JSON.parse(event.body); 
 
     if (method === 'POST'){
         const hash_password = await bcrypt.hash(password, 12)
+        const user_id = uuidv4();
         const params = {
             TableName: 'user',
             Item: {
-              'user_id' : uuidv4(),
+              'user_id' : user_id,
               'first_name' : first_name,
               'last_name' : last_name,
               'email' : email,
@@ -35,21 +30,29 @@ export const handler = async(event) => {
         // TODO implement
         try {
             const dynamoResponse = await ddb.send(new PutCommand(params))
-            const successfulResponse = {
+             const successfulResponse = {
                 statusCode: 200,
-                message: "Registration successful!"
+                message: "Registration successful!",
+                userDetails:  {
+                    'user_id' : user_id,
+                    'first_name' : first_name,
+                    'last_name' : last_name,
                 }
+             }
             const response = {
-            statusCode: 200,
-            body: successfulResponse
+                statusCode: 200,
+                body: JSON.stringify(successfulResponse),
+                headers: {
+                    //"Set-Cookie": `user_id=${user_id}`
+                }
             }
-             
             return response;
         } catch (e){
             console.log(e.message);
             const response = {
-            statusCode: 500,
-            body: "Registration unsuccessful! Please check if you have already created an account with us!",
+                statusCode: 500,
+                body: JSON.stringify(e.message),
+                
             };
             return response;
             
