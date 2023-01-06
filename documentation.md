@@ -95,7 +95,8 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
 ## Interview 
 
 1. #### `createUser`
-
+    endpoint url: https://y2rucoc6kiwrvvt4xqnfektnwi0dwqnz.lambda-url.us-west-1.on.aws/
+    
     object sent by frontend: 
     
     ``` JSON 
@@ -111,18 +112,26 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
     ``` JSON 
     {
+<<<<<<< HEAD
       "message" : "Registration successful!",
       "statusCode" : 200
+=======
+      "message" : "Registration successful!"
+      "statusCode" : 200,
+      "user_id" : String
+>>>>>>> e76f23fbaf0605434bb03f62d55ab46b50bdfdd2
     } 
     ```
     
     
 2. #### `getUser`
-
-     object sent by frontend (use `POST` request): 
+    endpoint url: https://nokdeyzkn7r4vbm5jp6ktpffae0svcvg.lambda-url.us-west-1.on.aws/
+    
+    object sent by frontend (use `POST` request): 
     
     ``` JSON 
     {
+      "user_id": String,
       "email": String,
       "password": String
     }
@@ -134,11 +143,12 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     {
       "message" : "Login successful!",
       "statusCode" : 200,
-      "user_id" : String
+      
     } 
     ```
     
 3. #### `createProfile`
+    endpoint url: https://gwl2m3ztomvuaz62gzm2cp3gey0ispie.lambda-url.us-west-1.on.aws/
 
     object sent by frontend: 
     
@@ -160,7 +170,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```
     
  4. #### `getProfile`
-
+    endpoint url: https://7wtpsdk6azrf5lltdgxpj4xsgi0ceelm.lambda-url.us-west-1.on.aws/
 
     object sent by backend: 
     
@@ -192,6 +202,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
+<<<<<<< HEAD
  6. #### `createPreSignedURL`
 
     object sent by frontend (as POST request): 
@@ -246,6 +257,11 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
 
  8. #### `createInterview`
 
+=======
+ 6. #### `createInterview`
+    endpoint url: https://s4bh4zczxpw4imhwzb5ixhfccm0vzvxe.lambda-url.us-west-1.on.aws/
+    
+>>>>>>> e76f23fbaf0605434bb03f62d55ab46b50bdfdd2
     object sent by frontend:
 
     The `content` and `digital_signature` will be the values from the `interviewFileKey` and `digitalSignatureFileKey` obtained from the backend when the  `createPreSignedURL` request was made.
