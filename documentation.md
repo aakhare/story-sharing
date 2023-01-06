@@ -112,14 +112,10 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
     ``` JSON 
     {
-<<<<<<< HEAD
-      "message" : "Registration successful!",
-      "statusCode" : 200
-=======
       "message" : "Registration successful!"
       "statusCode" : 200,
       "user_id" : String
->>>>>>> e76f23fbaf0605434bb03f62d55ab46b50bdfdd2
+
     } 
     ```
     
@@ -202,7 +198,6 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
-<<<<<<< HEAD
  6. #### `createPreSignedURL`
 
     object sent by frontend (as POST request): 
@@ -236,7 +231,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
 
- 7. #### `uploadInterviewMedia
+ 7. #### `uploadInterviewMedia`
     
     url: the url obtained from the `interviewSignedURL` and `digitalSignatureSignedURL` respectively
 
@@ -256,12 +251,9 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```
 
  8. #### `createInterview`
-
-=======
- 6. #### `createInterview`
     endpoint url: https://s4bh4zczxpw4imhwzb5ixhfccm0vzvxe.lambda-url.us-west-1.on.aws/
     
->>>>>>> e76f23fbaf0605434bb03f62d55ab46b50bdfdd2
+
     object sent by frontend:
 
     The `content` and `digital_signature` will be the values from the `interviewFileKey` and `digitalSignatureFileKey` obtained from the backend when the  `createPreSignedURL` request was made.
