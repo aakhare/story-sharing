@@ -165,20 +165,8 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
- 4. #### `getProfile`
+ 4. #### `getAllProfiles`
     endpoint url: https://7wtpsdk6azrf5lltdgxpj4xsgi0ceelm.lambda-url.us-west-1.on.aws/
-
-    object sent by backend: 
-    
-    ``` JSON 
-    {
-        "name": String,
-        "contact_info": String
-        "profile_id": String
-    }
-    ```
- 5. #### `getAllProfiles`
-    endpoint url:
 
     object sent by backend: A list of all the profiles in the database
     
@@ -204,7 +192,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
- 6. #### `updateProfile` 
+ 5. #### `updateProfile` 
 
     object sent by frontend (send the whole object): 
     
@@ -225,7 +213,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
- 7. #### `createPreSignedURL`
+ 6. #### `createPreSignedURL`
 
     object sent by frontend (as POST request): 
 
@@ -258,7 +246,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
 
- 8. #### `uploadInterviewMedia`
+ 7. #### `uploadInterviewMedia`
     
     url: the url obtained from the `interviewSignedURL` and `digitalSignatureSignedURL` respectively
 
@@ -277,7 +265,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
 
- 9. #### `createInterview`
+ 8. #### `createInterview`
     endpoint url: https://s4bh4zczxpw4imhwzb5ixhfccm0vzvxe.lambda-url.us-west-1.on.aws/
     
 
@@ -307,7 +295,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
- 10. #### `getInterviews`
+ 9. #### `getInterviews`
     endpoint url: 
     
 
