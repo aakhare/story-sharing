@@ -188,7 +188,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
             "name": String,
             "contact_info": String
             "profile_id": String
-        }...]
+        }]
     }
     ```
     
@@ -318,19 +318,19 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
         "message": "Success", 
         "statusCode": 200, 
         [{
-            'title' : String,
-            'format' : String,
-            'date' : date.toISOString(), 
+            "title" : String,
+            "format" : String,
+            "date" : date.toISOString(), 
         },
         {
-            'title' : String,
-            'format' : String,
-            'date' : date.toISOString(), 
+            "title" : String,
+            "format" : String,
+            "date" : date.toISOString(), 
         },
         {
-            'title' : String,
-            'format' : String,
-            'date' : date.toISOString(), 
-        }...]
+            "title" : String,
+            "format" : String,
+            "date" : date.toISOString(), 
+        }]
     }
     ```
