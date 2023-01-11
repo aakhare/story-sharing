@@ -142,7 +142,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
  3. #### `updateUserPassword`
     endpoint url: 
     
-    object sent by frontend (use `POST` request): 
+    object sent by frontend
     
     ``` JSON 
     {
