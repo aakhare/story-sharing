@@ -281,7 +281,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
-     9. #### `getInterviews`
+ 9. #### `getInterviews`
     endpoint url: 
     
 
