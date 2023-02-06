@@ -95,7 +95,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
 ## Interview 
 
 1. #### `createUser`
-    endpoint url: https://y2rucoc6kiwrvvt4xqnfektnwi0dwqnz.lambda-url.us-west-1.on.aws/
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/users
     
     object sent by frontend: 
     
@@ -119,7 +119,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
     
 2. #### `getUser`
-    endpoint url: https://nokdeyzkn7r4vbm5jp6ktpffae0svcvg.lambda-url.us-west-1.on.aws/
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/login
     
     object sent by frontend (use `POST` request): 
     
@@ -140,7 +140,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     } 
     ```
  3. #### `updateUserPassword`
-    endpoint url: 
+    endpoint url: in progress 
     
     object sent by frontend
     
@@ -161,7 +161,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
 
     
 4. #### `createProfile`
-    endpoint url: https://gwl2m3ztomvuaz62gzm2cp3gey0ispie.lambda-url.us-west-1.on.aws/
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/profiles
 
     object sent by frontend: 
     
@@ -183,7 +183,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```
     
  5. #### `getAllProfiles`
-    endpoint url: https://7wtpsdk6azrf5lltdgxpj4xsgi0ceelm.lambda-url.us-west-1.on.aws/
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/getallprofiles
 
     object sent by backend: A list of all the profiles in the database
     
@@ -232,6 +232,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
  7. #### `createPreSignedURL`
 
+    endpoint url:  https://6yldp7d4wt7pdqucipaows4hge0swfdi.lambda-url.us-west-1.on.aws/ 
     object sent by frontend (as POST request): 
 
     The `interviewContent_type` will be either audio, video, or text. The `URLtype` will be format of the url (such as mp3 or mp4). 
@@ -240,13 +241,9 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     {
         "profile_id": String,
         "interviewContent_type": String, 
-        "interviewFile": {
-            "URLtype": String
-            
-        },
-        "digitalSignatureFile": {
-            "URLtype": String
-        }
+        "interviewFile": String
+        "digitalSignatureFile": String
+        
     }
     ```
 
@@ -283,7 +280,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```
 
  9. #### `createInterview`
-    endpoint url: https://s4bh4zczxpw4imhwzb5ixhfccm0vzvxe.lambda-url.us-west-1.on.aws/
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/interviews
     
 
     object sent by frontend:
@@ -293,12 +290,13 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ``` JSON 
     {
         "profile_id": String, 
+        "digital_signature" : String,
         "format" : String,
         "title" : String,
         "content" : String, 
         "description" : String, 
-        "is_anonymous" : Boolean,
-        "digital_signature" : String,
+        "is_anonymous" : Boolean
+        
     }
     ```
     
@@ -313,16 +311,16 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```
     
  10. #### `getInterviews`
-    endpoint url: 
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/interviews/?profile_id=
     
 
     object sent by frontend:
 
-    The profile_id of the profile that the user wants the list of interviews for
+    The profile_id of the profile that the user wants the list of interviews for (pass this in as a query parameter)
     
     ``` JSON 
     {
-        "profile_id": String,
+        "profile_id": String
     }
     ```
     
