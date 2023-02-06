@@ -116,7 +116,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
       "statusCode" : 200,
     } 
     ```
-    
+    backend will also return a cookie with an access token, which frontend should save
     
 2. #### `getUser`
     endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/login
@@ -129,6 +129,9 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
       "password": String
     }
     ```
+    frontend should use the saved cookie and pass it into the header options like this: 
+    
+    `"Cookie": "AccessToken= "` where the access token is the value from the cookie
     
     object returned by backend: 
     
@@ -311,6 +314,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```
     
  10. #### `getInterviews`
+ 
     endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/interviews/?profile_id=
     
 
