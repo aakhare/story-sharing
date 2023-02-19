@@ -363,7 +363,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
    object returned by backend: 
    An array of all interview objects. 
    
-   ```JSON 
+   ``` JSON 
    { 
      "message": "Success",
      "statusCode": 200, 
@@ -379,7 +379,8 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
          }
          ...
       ]
-    ```
+   }
+   ```
     
   2. #### `viewInterviewDetails` 
   
