@@ -238,14 +238,14 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     endpoint url:  https://6yldp7d4wt7pdqucipaows4hge0swfdi.lambda-url.us-west-1.on.aws/ 
     object sent by frontend (as POST request): 
 
-    The `interviewContent_type` will be either audio, video, or text. The `URLtype` will be format of the url (such as mp3 or mp4). 
+    The `interviewContent_type` will be either audio, video, or text. The `interviewFile_format` and `digitalSignatureFile_format` will be format of the url (such as mp3 or mp4). 
 
     ``` JSON
     {
         "profile_id": String,
         "interviewContent_type": String, 
-        "interviewFile": String
-        "digitalSignatureFile": String
+        "interviewFile_format": String
+        "digitalSignatureFile_format": String
         
     }
     ```
