@@ -353,3 +353,169 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
         }]
     }
     ```
+    
+ ## Content Managing 
+ 
+ 1. #### `content-getInterviews`
+ 
+   This endpoint will be used for the interviews table on the first page. 
+   
+   object returned by backend: 
+   An array of all interview objects. 
+   
+   ```JSON 
+   { 
+     "message": "Success",
+     "statusCode": 200, 
+     "data" : 
+      [
+        {
+         "profile_id": String,
+         "interview_id": String,
+         "name": String, 
+         "title" String, 
+         "status": String,
+         "date" : String
+         }
+         ...
+      ]
+    ```
+    
+  2. #### `viewInterviewDetails` 
+  
+    This endpoint will be used for when an interview is selected from the table. 
+    
+    object sent by frontend:
+    
+    ```JSON
+    { 
+       "profile_id": String, 
+       "interview_id": String
+    }
+    ```
+    
+    object returned by backend: array of two objects, one for profile details, another for interview details" 
+    
+    ```JSON 
+    [
+      {
+         "name" : String,
+         "contact_info": String, 
+       }, 
+       {
+         "title": String, 
+         "content" : String (will be the url to S3 Bucket),
+         "description" : String, 
+         "is_anonymous": Boolean
+       }
+    ]
+    ```
+ 3. #### `updateInterviewStatus`
+    This endpoint will be used to update the interview status from the interview details page 
+    
+    object sent by frontend: 
+    
+    ```JSON 
+    {
+      "interview_id": String, 
+      "status": String,
+    }
+    ```
+    
+    object returned by backend:
+    
+    ```JSON 
+    {
+       "message": "Interview Status Updated!",
+       "statusCode": 200
+    }
+    ```
+    
+ 4. #### `udpateInterviewFlag` 
+    This endpoint will be used to update the interview flag from the interview details page
+    
+    object sent by frontend:
+    
+    ```JSON 
+    {
+       "interview_id": String, 
+       "flag": Boolean, 
+    }
+    ```
+    
+    object returned by backend: 
+    
+    ```JSON
+    {
+       "message": "Interview Flag Updated!", 
+       "statusCode": 200
+    }
+    ```
+      
+ 5. #### `createStory`
+    
+    This endpoint will be used for when a story is created for a particular interview 
+       
+     object sent by frontend: 
+     
+     ```JSON 
+     {
+        "interview_id": String, 
+        "profile_id": String, 
+        "story_title": String, 
+        "story_content": String, 
+        "story_caption": String, 
+        "story_status": String (either draft or published),
+        "tags": String, 
+     }
+     ```
+     
+     object returned by backend
+     
+     ```JSON
+     { 
+       "message": "Story successfully saved!",
+       "statusCode": 200,
+       "story_id": String
+     }
+     ```
+     
+  6. #### `getStoryDraftTitles`
+   
+  object returned by backend: array of story objects (containing title) that have a status of `drafts` 
+  
+  ```JSON 
+  [ 
+     {
+       "story_id": String, 
+       "story_title": String, 
+      },
+      ...
+  ]
+  ```
+    
+  7. #### `getStoryDrafts`
+  
+  object returned by backend: array of story objects that have a status of `drafts`
+  
+  ```JSON
+  [
+    {
+     "story_id": String,
+     "story_title": String, 
+     "story_content": String, 
+     "story_caption": String,
+     "story_status": String, 
+     "tags": String
+    },
+    ...
+  ]
+  ```
+  
+  
+  
+       
+    
+      
+    
+   
