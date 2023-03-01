@@ -18,6 +18,6 @@ void showMessageSnackBar(BuildContext context, String message) {
     content: Text(message),
     padding: sharedPadding,
     behavior: SnackBarBehavior.floating,
-    duration: const Duration(milliseconds: 150),
+    duration: const Duration(seconds: 5),
   ));
 }
