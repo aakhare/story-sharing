@@ -64,8 +64,8 @@ class ProfileSetUp {
       http.Response res =
           await http.get(Uri.parse('${EndPoints.url}/getallprofiles'));
       httpErrorHandle(response: res, context: context, onSuccess: () {});
-      Map<String, dynamic> mapProfiles = jsonDecode(res.body);
-      List<Profile> allProfiles = mapProfiles["data"];
+      final mapProfiles = jsonDecode(res.body);
+      List<Profile> allProfiles = (mapProfiles['data'] as List).map((itemWord) => Profile.fromJson(itemWord)).toList();
       return allProfiles;
     } catch (e) {
       showMessageSnackBar(context, e.toString());
