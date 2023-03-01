@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:obujulizi_interview_final/utils/all.dart';
 import 'package:obujulizi_interview_final/widgets/all.dart';
 
-class NavigationDrawer extends StatelessWidget {
-  const NavigationDrawer({Key? key}) : super(key: key);
+class MyNavigationDrawer extends StatelessWidget {
+  const MyNavigationDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -21,7 +21,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: globalKey,
-      drawer: const NavigationDrawer(),
+      drawer: const MyNavigationDrawer(),
       body: SafeArea(
         child: Column(children: [
           mediumVertical,

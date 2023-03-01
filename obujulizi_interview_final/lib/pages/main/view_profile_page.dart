@@ -29,7 +29,7 @@ class ViewProfilePageState extends State<ViewProfilePage> {
 
     return Scaffold(
       key: globalKey,
-      drawer: const NavigationDrawer(),
+      drawer: const MyNavigationDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
             padding: smallPagePadding,
@@ -104,8 +104,7 @@ class ViewProfilePageState extends State<ViewProfilePage> {
 
   Widget buildInterviews(List<InterviewData> interviews) {
     final columns = ['Title', 'Format', 'Date'];
-    return DataTable(
-        columns: getColumns(columns), rows: getRows(interviews));
+    return DataTable(columns: getColumns(columns), rows: getRows(interviews));
   }
 
   List<DataColumn> getColumns(List<String> columns) =>
@@ -113,13 +112,10 @@ class ViewProfilePageState extends State<ViewProfilePage> {
 
   List<DataRow> getRows(List<InterviewData> interviews) =>
       interviews.map((InterviewData interviews) {
-        final cells = [
-          interviews.title,
-          interviews.format,
-          interviews.date
-        ];
+        final cells = [interviews.title, interviews.format, interviews.date];
         return DataRow(cells: getCells(cells));
       }).toList();
 
-  List<DataCell> getCells(List<dynamic> cells) => cells.map((data) => DataCell(Text('$data'))).toList();
+  List<DataCell> getCells(List<dynamic> cells) =>
+      cells.map((data) => DataCell(Text('$data'))).toList();
 }
