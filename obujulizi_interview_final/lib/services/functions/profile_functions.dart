@@ -7,7 +7,6 @@ import 'package:obujulizi_interview_final/services/models/profile_model.dart';
 import 'package:obujulizi_interview_final/utils/all.dart';
 import 'package:obujulizi_interview_final/widgets/all.dart';
 
-
 class ProfileSetUp {
   void createProfile(
       {required BuildContext context,
@@ -59,14 +58,14 @@ class ProfileSetUp {
     }
   }
 
-  static Future<List<Profile>> getAllProfiles({required BuildContext context}) async {
+  static Future<List<Profile>> getAllProfiles(
+      {required BuildContext context}) async {
     try {
       http.Response res =
           await http.get(Uri.parse('${EndPoints.url}/getallprofiles'));
       httpErrorHandle(response: res, context: context, onSuccess: () {});
-      List mapProfiles = jsonDecode(res.body);
-      List<Profile> allProfiles =
-          mapProfiles.map((profile) => Profile.fromJson(profile)).toList();
+      Map<String, dynamic> mapProfiles = jsonDecode(res.body);
+      List<Profile> allProfiles = mapProfiles["data"];
       return allProfiles;
     } catch (e) {
       showMessageSnackBar(context, e.toString());
