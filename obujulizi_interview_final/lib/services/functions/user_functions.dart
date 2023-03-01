@@ -26,7 +26,7 @@ class UserAuthentication {
       http.Response res = await http.post(Uri.parse('${EndPoints.url}/users'),
           body: user.toJson(),
           headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF8',
+            'Content-Type': 'application/json; charset=UTF-8',
           });
 
       httpErrorHandle(

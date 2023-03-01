@@ -2,7 +2,6 @@
 export 'constants/colors.dart';
 export 'constants/endpoints.dart';
 export 'constants/spaces.dart';
-export 'constants/spaces.dart';
 export 'constants/styles.dart';
 
 //Routes
