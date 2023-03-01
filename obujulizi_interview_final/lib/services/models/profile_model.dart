@@ -10,7 +10,7 @@ class Profile {
   Map<String, dynamic> toMap() {
     return {
       'user_id': profileId,
-      'email': contactInfo,
+      'contact_info': contactInfo,
       'name': name,
     };
   }

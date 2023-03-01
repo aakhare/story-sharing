@@ -66,7 +66,7 @@ class ProfileSetUp {
       httpErrorHandle(response: res, context: context, onSuccess: () {});
       List mapProfiles = jsonDecode(res.body);
       List<Profile> allProfiles =
-          mapProfiles.map((movie) => Profile.fromJson(movie)).toList();
+          mapProfiles.map((profile) => Profile.fromJson(profile)).toList();
       return allProfiles;
     } catch (e) {
       showMessageSnackBar(context, e.toString());
