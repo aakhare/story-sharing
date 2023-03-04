@@ -143,7 +143,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     } 
     ```
  3. #### `updateUserPassword`
-    endpoint url: in progress 
+    endpoint url: https://grhys5d6mv2zr2brcm4g7vrmhu0uegxn.lambda-url.us-west-1.on.aws/
     
     object sent by frontend
     
@@ -158,8 +158,12 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
     ``` JSON 
     {
-      "message" : "Password updated successfully!",
       "statusCode" : 200,
+      "message" : "Update successful!",
+      "data" : {
+          "user_id": String
+      }
+      
     } 
 
     
