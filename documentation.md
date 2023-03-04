@@ -364,10 +364,6 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
    An array of all interview objects. 
    
    ``` JSON 
-   { 
-     "message": "Success",
-     "statusCode": 200, 
-     "data" : 
       [
         {
          "profile_id": String,
@@ -379,7 +375,6 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
          }
          ...
       ]
-   }
    ```
     
   2. #### `viewInterviewDetails` 
@@ -433,6 +428,9 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```
     
  4. #### `udpateInterviewFlag` 
+    
+    endpoint url: https://r5bdrlrz4ctjxvzypqrgo2dasm0pokws.lambda-url.us-west-1.on.aws/
+    
     This endpoint will be used to update the interview flag from the interview details page
     
     object sent by frontend:
@@ -454,6 +452,8 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```
       
  5. #### `createStory`
+    
+    endpoint url: https://ablaevqomwtjveizp2faflypp40khwop.lambda-url.us-west-1.on.aws/
     
     This endpoint will be used for when a story is created for a particular interview 
        
@@ -483,6 +483,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
      
   6. #### `getStoryDraftTitles`
    
+  endpoint url: https://3mitxjbibzqtrn4c4eermo574m0dmyss.lambda-url.us-west-1.on.aws/
   object returned by backend: array of story objects (containing title) that have a status of `drafts` 
   
   ```JSON 
@@ -490,6 +491,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
      {
        "story_id": String, 
        "story_title": String, 
+       "story_status": "draft"
       },
       ...
   ]
@@ -497,6 +499,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
   7. #### `getStoryDrafts`
   
+  endpoint url: https://fvmov42vtff3xcujf6obiz7wby0rrmxi.lambda-url.us-west-1.on.aws/
   object returned by backend: array of story objects that have a status of `drafts`
   
   ```JSON
