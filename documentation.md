@@ -240,6 +240,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
  7. #### `createPreSignedURL`
 
     endpoint url:  https://6yldp7d4wt7pdqucipaows4hge0swfdi.lambda-url.us-west-1.on.aws/ 
+    
     object sent by frontend (as POST request): 
 
     The `interviewContent_type` will be either audio, video, or text. The `interviewFile_format` and `digitalSignatureFile_format` will be format of the url (such as mp3 or mp4). 
@@ -488,6 +489,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   6. #### `getStoryDraftTitles`
    
   endpoint url: https://3mitxjbibzqtrn4c4eermo574m0dmyss.lambda-url.us-west-1.on.aws/
+  
   object returned by backend: array of story objects (containing title) that have a status of `drafts` 
   
   ```JSON 
@@ -504,6 +506,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   7. #### `getStoryDrafts`
   
   endpoint url: https://fvmov42vtff3xcujf6obiz7wby0rrmxi.lambda-url.us-west-1.on.aws/
+  
   object returned by backend: array of story objects that have a status of `drafts`
   
   ```JSON
