@@ -320,12 +320,10 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
  10. #### `getInterviews`
  
-    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/interviews/?profile_id=
+    endpoint url: https://2jlh65iaqhaadnumtxsdjtahcq0yhjoi.lambda-url.us-west-1.on.aws/
     
-
     object sent by frontend:
 
-    The profile_id of the profile that the user wants the list of interviews for (pass this in as a query parameter)
     
     ``` JSON 
     {
