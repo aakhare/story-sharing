@@ -26,13 +26,13 @@ Below is the database schema for the entire project. Four key tables will be use
 | :---     | :---    | :--- |
 | interview_id | String | Partition Key |
 | profile_id   | String | Global Secondary Index |
-| digital_singature | String |
-| format | String | 
-| title  | String |
-| description | String |
-| content | String |
-| date    | String |
-| status  | String |
+| digital_signature | String |
+| interview_format | String | 
+| interview_title  | String |
+| interview_description | String |
+| interview_content | String |
+| interview_date    | String |
+| interview_status  | String |
 | flagged | Boolean | 
 | is_anonymous | Boolean |
 
@@ -76,7 +76,7 @@ The contact information of an interviewee/participant will be in the form of a s
 
 The `interview_id` will be auto-generated, and an existing `profile_id` will be matched to the table. The `status` and `flagged` attributes will be given a default value of `pending` and `false`, respectively, until both are changed through the content manager web application. Other attributes include metadata about the interview and the content of the interview itself. The `format` attribute must only either be `video`, `audio`, or `text`. The `status` attribute must only either be `pending`, `approved`, `denied`, or `laid aside`. 
 
-| interview_id  | profile_id   | format  | title | content | description | date | digital_signature | is_anonymous | status | flagged
+| interview_id  | profile_id   | interview_format  | interview_title | interview_content | interview_description | interview_date | digital_signature | is_anonymous | interview_status | flagged
 | :---     | :---    | :---      | :---      | :---      | :---    | :---   | :---   | :---  | :---  | :---
 | "8922c504-68d4-4c13-88fa-c05f271803b4" | "e9a94732-176e-4b4b-bf03-32461ada23bb" | "video" | "Health update" | "url.mp4" | "Participant discusses health issues ... " | "December 21, 2022" | "url.mp4" | true | "pending" | false | 
 
@@ -299,10 +299,10 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     {
         "profile_id": String, 
         "digital_signature" : String,
-        "format" : String,
-        "title" : String,
-        "content" : String, 
-        "description" : String, 
+        "interview_format" : String,
+        "interview_title" : String,
+        "interview_content" : String, 
+        "interview_description" : String, 
         "is_anonymous" : Boolean
         
     }
@@ -340,19 +340,19 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
         "message": "Success", 
         "statusCode": 200, 
         [{
-            "title" : String,
-            "format" : String,
-            "date" : date.toISOString(), 
+            "interview_title" : String,
+            "interview_format" : String,
+            "interview_date" : date.toISOString(), 
         },
         {
-            "title" : String,
-            "format" : String,
-            "date" : date.toISOString(), 
+            "interview_title" : String,
+            "interview_format" : String,
+            "interview_date" : date.toISOString(), 
         },
         {
-            "title" : String,
-            "format" : String,
-            "date" : date.toISOString(), 
+            "interview_title" : String,
+            "interview_format" : String,
+            "interview_date" : date.toISOString(), 
         }]
     }
     ```
@@ -371,45 +371,58 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
         {
          "profile_id": String,
          "interview_id": String,
-         "name": String, 
-         "title" String, 
-         "status": String,
-         "date" : String
+         "interview_title" String, 
+         "interview_status": String,
+         "interview_date" : String
          }
          ...
       ]
    ```
-    
+   
+ The following #####two endpoints will be used for when an interview is selected from the table. 
+
   2. #### `viewInterviewDetails` 
   
-    This endpoint will be used for when an interview is selected from the table. 
-    
+    This endpoint will be used to view interview details for a particular interview.
     object sent by frontend:
     
     ```JSON
     { 
-       "profile_id": String, 
        "interview_id": String
     }
     ```
     
-    object returned by backend: array of two objects, one for profile details, another for interview details" 
+    object returned by backend:
     
     ```JSON 
-    [
-      {
-         "name" : String,
-         "contact_info": String, 
-       }, 
+
        {
-         "title": String, 
-         "content" : String (will be the url to S3 Bucket),
-         "description" : String, 
+         "interview_title": String, 
+         "interview_content" : String (will be the url to S3 Bucket),
+         "interview_description" : String, 
          "is_anonymous": Boolean
        }
     ]
     ```
- 3. #### `updateInterviewStatus`
+ 3. #### `viewProfileDetails`
+    This endpoint will be used to view the profile details for a particular interview.
+    
+    object sent by frontend: 
+    ```JSON 
+    { 
+      "profile_id": String
+    }
+    ```
+    
+    object returned by backend: 
+    ```JSON 
+    {
+      "name": String,
+      "contact_info": String
+    }
+    ```
+    
+ 4. #### `updateInterviewStatus`
     This endpoint will be used to update the interview status from the interview details page 
     
     object sent by frontend: 
@@ -430,7 +443,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
- 4. #### `udpateInterviewFlag` 
+ 5. #### `udpateInterviewFlag` 
     
     endpoint url: https://r5bdrlrz4ctjxvzypqrgo2dasm0pokws.lambda-url.us-west-1.on.aws/
     
@@ -454,7 +467,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
       
- 5. #### `createStory`
+ 6. #### `createStory`
     
     endpoint url: https://ablaevqomwtjveizp2faflypp40khwop.lambda-url.us-west-1.on.aws/
     
@@ -484,7 +497,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
      }
      ```
      
-  6. #### `getStoryDraftTitles`
+  7. #### `getStoryDraftTitles`
    
   endpoint url: https://3mitxjbibzqtrn4c4eermo574m0dmyss.lambda-url.us-west-1.on.aws/
   
@@ -501,7 +514,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   ]
   ```
     
-  7. #### `getStoryDrafts`
+  8. #### `getStoryDrafts`
   
   endpoint url: https://fvmov42vtff3xcujf6obiz7wby0rrmxi.lambda-url.us-west-1.on.aws/
   
