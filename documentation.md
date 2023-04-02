@@ -373,7 +373,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
         {
          "profile_id": String,
          "interview_id": String,
-         "interview_title" String, 
+         "interview_title": String, 
          "interview_status": String,
          "interview_date" : String,
          "interview_format" : String,
