@@ -317,8 +317,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
         "interview_id": String
     }
     ```
-    
- 10. #### `getInterviews`
+10. #### `getInterviews`
  
     endpoint url: https://2jlh65iaqhaadnumtxsdjtahcq0yhjoi.lambda-url.us-west-1.on.aws/
     
@@ -333,14 +332,13 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
     object returned by backend:
     
-    An array of all the interviews with that profile_id
+    An array of all the interviews with that profile_id passed in by the frontend
     
-    ``` JSON
+    ```JSON
     {
-        "message": "Success", 
-        "statusCode": 200, 
-        [{
-            "interview_title" : String,
+      [ 
+        {
+            "interview_title": String,
             "interview_format" : String,
             "interview_date" : date.toISOString(), 
         },
@@ -353,9 +351,10 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
             "interview_title" : String,
             "interview_format" : String,
             "interview_date" : date.toISOString(), 
-        }]
+        }
+      ]
     }
-    ```
+    ````
     
  ## Content Managing 
  
@@ -384,7 +383,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
    
  The following two endpoints will be used for when an interview is selected from the table. 
 
-  2. #### `viewInterviewDetails` 
+2. #### `viewInterviewDetails` 
   
     endpoint url: https://dycviqm2d7r5wvkaojst72vide0yvbso.lambda-url.us-west-1.on.aws/
     
@@ -535,6 +534,28 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   ]
   ```
   
+  ## Stories App 
+  
+  1. #### `getAllStories`
+  
+  object returned by backend: array of story objects that have a status of `published`
+  
+  ```JSON 
+  [ 
+    {
+      "story_id": String, 
+      "story_title": String,
+      "story_content": String,
+      "story_caption": String,
+      "story_status": String,
+      "tags": String 
+    }
+    ...
+  ]
+  ```
+  
+
+      
   
   
        
