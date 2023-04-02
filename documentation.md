@@ -387,7 +387,11 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   
     endpoint url: https://dycviqm2d7r5wvkaojst72vide0yvbso.lambda-url.us-west-1.on.aws/
     
-    This endpoint will be used to view profile details and interview details for a particular interview.
+    This endpoint will be used to view profile details and interview details for a particular interview. 
+    
+    Note that for the interview_content field, frontend will recieve the file key to the S3 bucket. Add this https://testbucket63419.s3.us-west-1.amazonaws.com/ to the front of the file key to obtain the full url of the interview. 
+    For example, if the file key from the interview_content field is `990e5e3a-a8af-43ae-ad03-c7fdda1e5e84_Interviews/video/e83d3ea0-a8c8-4387-b6a3-65550685dae1.mp4` then the full url for this interview will be https://testbucket63419.s3.us-west-1.amazonaws.com/990e5e3a-a8af-43ae-ad03-c7fdda1e5e84_Interviews/video/e83d3ea0-a8c8-4387-b6a3-65550685dae1.mp4
+    
     object sent by frontend:
     
     ```JSON
