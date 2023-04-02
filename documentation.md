@@ -359,8 +359,10 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
  ## Content Managing 
  
- 1. #### `content-getInterviews`
+ 1. #### `content-getAllInterviews`
  
+   enpoint url : https://fkoadnxjimanii62ylbdq6it240wglyd.lambda-url.us-west-1.on.aws/
+   
    This endpoint will be used for the interviews table on the first page. 
    
    object returned by backend: 
@@ -373,21 +375,25 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
          "interview_id": String,
          "interview_title" String, 
          "interview_status": String,
-         "interview_date" : String
+         "interview_date" : String,
+         "interview_format" : String,
          }
          ...
       ]
    ```
    
- The following #####two endpoints will be used for when an interview is selected from the table. 
+ The following two endpoints will be used for when an interview is selected from the table. 
 
   2. #### `viewInterviewDetails` 
   
-    This endpoint will be used to view interview details for a particular interview.
+    endpoint url: https://dycviqm2d7r5wvkaojst72vide0yvbso.lambda-url.us-west-1.on.aws/
+    
+    This endpoint will be used to view profile details and interview details for a particular interview.
     object sent by frontend:
     
     ```JSON
     { 
+       "profile_id": String,
        "interview_id": String
     }
     ```
@@ -395,34 +401,29 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     object returned by backend:
     
     ```JSON 
-
+    [
        {
-         "interview_title": String, 
-         "interview_content" : String (will be the url to S3 Bucket),
-         "interview_description" : String, 
-         "is_anonymous": Boolean
+          "profile_id": String, 
+          "name": String,
+          "contact_info": String
+       },
+       {
+          "interview_title": String, 
+          "interview_content" : String (will be the url to S3 Bucket),
+          "interview_description" : String, 
+          "interview_date": String,
+          "interview_status": String,
+          "interview_format": String,
+          "is_anonymous": Boolean
+          "flagged": Boolean
        }
     ]
     ```
- 3. #### `viewProfileDetails`
-    This endpoint will be used to view the profile details for a particular interview.
     
-    object sent by frontend: 
-    ```JSON 
-    { 
-      "profile_id": String
-    }
-    ```
+ 3. #### `updateInterviewStatus`
+
+    endpoint url: https://dvrt45c2ufmpe2qjrragaltbzy0miwel.lambda-url.us-west-1.on.aws/
     
-    object returned by backend: 
-    ```JSON 
-    {
-      "name": String,
-      "contact_info": String
-    }
-    ```
-    
- 4. #### `updateInterviewStatus`
     This endpoint will be used to update the interview status from the interview details page 
     
     object sent by frontend: 
@@ -443,7 +444,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
- 5. #### `udpateInterviewFlag` 
+ 4. #### `udpateInterviewFlag` 
     
     endpoint url: https://r5bdrlrz4ctjxvzypqrgo2dasm0pokws.lambda-url.us-west-1.on.aws/
     
@@ -467,7 +468,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
       
- 6. #### `createStory`
+ 5. #### `createStory`
     
     endpoint url: https://ablaevqomwtjveizp2faflypp40khwop.lambda-url.us-west-1.on.aws/
     
@@ -497,7 +498,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
      }
      ```
      
-  7. #### `getStoryDraftTitles`
+  6. #### `getStoryDraftTitles`
    
   endpoint url: https://3mitxjbibzqtrn4c4eermo574m0dmyss.lambda-url.us-west-1.on.aws/
   
@@ -514,7 +515,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   ]
   ```
     
-  8. #### `getStoryDrafts`
+  7. #### `getStoryDrafts`
   
   endpoint url: https://fvmov42vtff3xcujf6obiz7wby0rrmxi.lambda-url.us-west-1.on.aws/
   
