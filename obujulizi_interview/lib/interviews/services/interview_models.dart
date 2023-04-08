@@ -65,9 +65,6 @@ class UploadInfo {
       digitalSignatureFileKey: map['digitalSignatureFileKey'] ?? '',
     );
   }
-
-  String toJson() => json.encode(toMap());
-  factory UploadInfo.fromJson(String source) => UploadInfo.fromMap(json.decode(source));
 }
 
 class Interview {
@@ -96,44 +93,6 @@ class Interview {
       required this.flagged,
       required this.isAnonymous});
 
-  Map<String, dynamic> toMap() {
-    return {
-      'interview_id': interviewId,
-      'profile_id': profileId,
-      'digital_signature': digitalSignature,
-      'format': format,
-      'title': title,
-      'description': description,
-      'content': content,
-      'date': date,
-      'status': status,
-      'flagged': flagged,
-      'is_anonymous': isAnonymous,
-    };
-  }
-
-  factory Interview.fromMap(Map<String, dynamic> map) {
-    return Interview(
-      interviewId: map['interview_id'] ?? '',
-      profileId: map['profile_id'] ?? '',
-      digitalSignature: map['digital_signature'] ?? '',
-      format: map['format'] ?? '',
-      title: map['title'] ?? '',
-      description: map['description'] ?? '',
-      content: map['content'] ?? '',
-      date: map['date'] ?? '',
-      status: map['status'] ?? '',
-      flagged: map['flagged'] ?? '',
-      isAnonymous: map['is_anonymous'] ?? '',
-    );
-  }
-
-  String toJson() {
-    return json.encode(toMap());
-  }
-
-  factory Interview.fromJson(String source) =>
-      Interview.fromMap(json.decode(source));
 }
 
 class InfoRow {
@@ -147,25 +106,6 @@ class InfoRow {
     // required this.date,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'title': title,
-      // 'format': format,
-      // 'date': date,
-    };
-  }
-
-  factory InfoRow.fromMap(Map<String, dynamic> map) {
-    return InfoRow(
-      title: map['title'] ?? '',
-      // format: map['format'] ?? '',
-      // date: map['data'] ?? '',
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-  factory InfoRow.fromJson(String source) =>
-      InfoRow.fromMap(json.decode(source));
 }
 
 class FormatData {
