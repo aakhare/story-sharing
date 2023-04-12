@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "GetUserInputModel",
+  "type": "object",
+  "properties": {
+    "profile_id": { "type": "string" }, 
+    "format" : { "type": "string" },
+    "title" : { "type": "string" },
+    "content" : { "type": "string" },
+    "description" : { "type": "string" }, 
+    "is_anonymous" : { "type": "boolean" },
+    "digital_signature" : { "type": "string" }
+  }
+}

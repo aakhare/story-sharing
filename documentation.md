@@ -26,13 +26,13 @@ Below is the database schema for the entire project. Four key tables will be use
 | :---     | :---    | :--- |
 | interview_id | String | Partition Key |
 | profile_id   | String | Global Secondary Index |
-| digital_singature | String |
-| format | String | 
-| title  | String |
-| description | String |
-| content | String |
-| date    | String |
-| status  | String |
+| digital_signature | String |
+| interview_format | String | 
+| interview_title  | String |
+| interview_description | String |
+| interview_content | String |
+| interview_date    | String |
+| interview_status  | String |
 | flagged | Boolean | 
 | is_anonymous | Boolean |
 
@@ -76,7 +76,7 @@ The contact information of an interviewee/participant will be in the form of a s
 
 The `interview_id` will be auto-generated, and an existing `profile_id` will be matched to the table. The `status` and `flagged` attributes will be given a default value of `pending` and `false`, respectively, until both are changed through the content manager web application. Other attributes include metadata about the interview and the content of the interview itself. The `format` attribute must only either be `video`, `audio`, or `text`. The `status` attribute must only either be `pending`, `approved`, `denied`, or `laid aside`. 
 
-| interview_id  | profile_id   | format  | title | content | description | date | digital_signature | is_anonymous | status | flagged
+| interview_id  | profile_id   | interview_format  | interview_title | interview_content | interview_description | interview_date | digital_signature | is_anonymous | interview_status | flagged
 | :---     | :---    | :---      | :---      | :---      | :---    | :---   | :---   | :---  | :---  | :---
 | "8922c504-68d4-4c13-88fa-c05f271803b4" | "e9a94732-176e-4b4b-bf03-32461ada23bb" | "video" | "Health update" | "url.mp4" | "Participant discusses health issues ... " | "December 21, 2022" | "url.mp4" | true | "pending" | false | 
 
@@ -95,7 +95,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
 ## Interview 
 
 1. #### `createUser`
-    endpoint url: https://y2rucoc6kiwrvvt4xqnfektnwi0dwqnz.lambda-url.us-west-1.on.aws/
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/users
     
     object sent by frontend: 
     
@@ -112,26 +112,43 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
     ``` JSON 
     {
-<<<<<<< HEAD
-      "message" : "Registration successful!",
-      "statusCode" : 200
-=======
       "message" : "Registration successful!"
       "statusCode" : 200,
-      "user_id" : String
->>>>>>> e76f23fbaf0605434bb03f62d55ab46b50bdfdd2
     } 
     ```
-    
+    backend will also return a cookie with an access token, which frontend should save
     
 2. #### `getUser`
-    endpoint url: https://nokdeyzkn7r4vbm5jp6ktpffae0svcvg.lambda-url.us-west-1.on.aws/
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/login
     
     object sent by frontend (use `POST` request): 
     
     ``` JSON 
     {
-      "user_id": String,
+      "email": String,
+      "password": String
+    }
+    ```
+    frontend should use the saved cookie and pass it into the header options like this: 
+    
+    `"Cookie": "AccessToken= "` where the access token is the value from the cookie
+    
+    object returned by backend: 
+    
+    ``` JSON 
+    {
+      "message" : "Login successful!",
+      "statusCode" : 200,
+      "token": String,
+    } 
+    ```
+ 3. #### `updateUserPassword`
+    endpoint url: https://grhys5d6mv2zr2brcm4g7vrmhu0uegxn.lambda-url.us-west-1.on.aws/
+    
+    object sent by frontend
+    
+    ``` JSON 
+    {
       "email": String,
       "password": String
     }
@@ -141,14 +158,17 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
     ``` JSON 
     {
-      "message" : "Login successful!",
       "statusCode" : 200,
+      "message" : "Update successful!",
+      "data" : {
+          "user_id": String
+      }
       
     } 
-    ```
+
     
-3. #### `createProfile`
-    endpoint url: https://gwl2m3ztomvuaz62gzm2cp3gey0ispie.lambda-url.us-west-1.on.aws/
+4. #### `createProfile`
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/profiles
 
     object sent by frontend: 
     
@@ -169,19 +189,34 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
- 4. #### `getProfile`
-    endpoint url: https://7wtpsdk6azrf5lltdgxpj4xsgi0ceelm.lambda-url.us-west-1.on.aws/
+ 5. #### `getAllProfiles`
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/getallprofiles
 
-    object sent by backend: 
+    object sent by backend: A list of all the profiles in the database
     
     ``` JSON 
     {
-        "name": String,
-        "contact_info": String
+        "message": "Update saved!", 
+        "statusCode": 200,
+        [{
+            "name": String,
+            "contact_info": String
+            "profile_id": String
+        },
+        {
+            "name": String,
+            "contact_info": String
+            "profile_id": String
+        },
+        {
+            "name": String,
+            "contact_info": String
+            "profile_id": String
+        }]
     }
     ```
     
- 5. #### `updateProfile` 
+ 6. #### `updateProfile` 
 
     object sent by frontend (send the whole object): 
     
@@ -202,24 +237,21 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
-<<<<<<< HEAD
- 6. #### `createPreSignedURL`
+ 7. #### `createPreSignedURL`
 
+    endpoint url:  https://6yldp7d4wt7pdqucipaows4hge0swfdi.lambda-url.us-west-1.on.aws/ 
+    
     object sent by frontend (as POST request): 
 
-    The `interviewContent_type` will be either audio, video, or text. The `URLtype` will be format of the url (such as mp3 or mp4). 
+    The `interviewContent_type` will be either audio, video, or text. The `interviewFile_format` and `digitalSignatureFile_format` will be format of the url (such as mp3 or mp4). 
 
     ``` JSON
     {
         "profile_id": String,
         "interviewContent_type": String, 
-        "interviewFile": {
-            "URLtype": String
-            
-        },
-        "digitalSignatureFile": {
-            "URLtype": String
-        }
+        "interviewFile_format": String
+        "digitalSignatureFile_format": String
+        
     }
     ```
 
@@ -236,7 +268,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
 
- 7. #### `uploadInterviewMedia
+ 8. #### `uploadInterviewMedia`
     
     url: the url obtained from the `interviewSignedURL` and `digitalSignatureSignedURL` respectively
 
@@ -255,13 +287,10 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
 
- 8. #### `createInterview`
-
-=======
- 6. #### `createInterview`
-    endpoint url: https://s4bh4zczxpw4imhwzb5ixhfccm0vzvxe.lambda-url.us-west-1.on.aws/
+ 9. #### `createInterview`
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/interviews
     
->>>>>>> e76f23fbaf0605434bb03f62d55ab46b50bdfdd2
+
     object sent by frontend:
 
     The `content` and `digital_signature` will be the values from the `interviewFileKey` and `digitalSignatureFileKey` obtained from the backend when the  `createPreSignedURL` request was made.
@@ -269,12 +298,13 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ``` JSON 
     {
         "profile_id": String, 
-        "format" : String,
-        "title" : String,
-        "content" : String, 
-        "description" : String, 
-        "is_anonymous" : Boolean,
         "digital_signature" : String,
+        "interview_format" : String,
+        "interview_title" : String,
+        "interview_content" : String, 
+        "interview_description" : String, 
+        "is_anonymous" : Boolean
+        
     }
     ```
     
@@ -287,6 +317,243 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
         "interview_id": String
     }
     ```
-  
+10. #### `getInterviews`
+ 
+    endpoint url: https://2jlh65iaqhaadnumtxsdjtahcq0yhjoi.lambda-url.us-west-1.on.aws/
+    
+    object sent by frontend:
 
     
+    ``` JSON 
+    {
+        "profile_id": String
+    }
+    ```
+    
+    object returned by backend:
+    
+    An array of all the interviews with that profile_id passed in by the frontend
+    
+    ```JSON
+    {
+      [ 
+        {
+            "interview_title": String,
+            "interview_format" : String,
+            "interview_date" : date.toISOString(), 
+        },
+        {
+            "interview_title" : String,
+            "interview_format" : String,
+            "interview_date" : date.toISOString(), 
+        },
+        {
+            "interview_title" : String,
+            "interview_format" : String,
+            "interview_date" : date.toISOString(), 
+        }
+      ]
+    }
+    ````
+    
+ ## Content Managing 
+ 
+ 1. #### `content-getAllInterviews`
+ 
+   enpoint url : https://fkoadnxjimanii62ylbdq6it240wglyd.lambda-url.us-west-1.on.aws/
+   
+   This endpoint will be used for the interviews table on the first page. 
+   
+   object returned by backend: 
+   An array of all interview objects. 
+   
+   ``` JSON 
+      [
+        {
+         "profile_id": String,
+         "interview_id": String,
+         "interview_title": String, 
+         "interview_status": String,
+         "interview_date" : String,
+         "interview_format" : String,
+         }
+         ...
+      ]
+   ```
+   
+ The following two endpoints will be used for when an interview is selected from the table. 
+
+2. #### `viewInterviewDetails` 
+  
+    endpoint url: https://dycviqm2d7r5wvkaojst72vide0yvbso.lambda-url.us-west-1.on.aws/
+    
+    This endpoint will be used to view profile details and interview details for a particular interview. 
+    
+    Note that for the interview_content field, frontend will recieve the file key to the S3 bucket. Add this https://testbucket63419.s3.us-west-1.amazonaws.com/ to the front of the file key to obtain the full url of the interview. 
+    For example, if the file key from the interview_content field is `990e5e3a-a8af-43ae-ad03-c7fdda1e5e84_Interviews/video/e83d3ea0-a8c8-4387-b6a3-65550685dae1.mp4` then the full url for this interview will be https://testbucket63419.s3.us-west-1.amazonaws.com/990e5e3a-a8af-43ae-ad03-c7fdda1e5e84_Interviews/video/e83d3ea0-a8c8-4387-b6a3-65550685dae1.mp4
+    
+    object sent by frontend:
+    
+    ```JSON
+    { 
+       "profile_id": String,
+       "interview_id": String
+    }
+    ```
+    
+    object returned by backend:
+    
+    ```JSON 
+    [
+       {
+          "profile_id": String, 
+          "name": String,
+          "contact_info": String
+       },
+       {
+          "interview_title": String, 
+          "interview_content" : String (will be the url to S3 Bucket),
+          "interview_description" : String, 
+          "interview_date": String,
+          "interview_status": String,
+          "interview_format": String,
+          "is_anonymous": Boolean
+          "flagged": Boolean
+       }
+    ]
+    ```
+    
+ 3. #### `updateInterviewStatus`
+
+    endpoint url: https://dvrt45c2ufmpe2qjrragaltbzy0miwel.lambda-url.us-west-1.on.aws/
+    
+    This endpoint will be used to update the interview status from the interview details page 
+    
+    object sent by frontend: 
+    
+    ```JSON 
+    {
+      "interview_id": String, 
+      "interview_status": String,
+    }
+    ```
+    
+    object returned by backend:
+    
+    ```JSON 
+    {
+       "message": "Interview Status Updated!",
+       "statusCode": 200
+    }
+    ```
+    
+ 4. #### `udpateInterviewFlag` 
+    
+    endpoint url: https://r5bdrlrz4ctjxvzypqrgo2dasm0pokws.lambda-url.us-west-1.on.aws/
+    
+    This endpoint will be used to update the interview flag from the interview details page
+    
+    object sent by frontend:
+    
+    ```JSON 
+    {
+       "interview_id": String, 
+       "flag": Boolean, 
+    }
+    ```
+    
+    object returned by backend: 
+    
+    ```JSON
+    {
+       "message": "Interview Flag Updated!", 
+       "statusCode": 200
+    }
+    ```
+      
+ 5. #### `createStory`
+    
+    endpoint url: https://ablaevqomwtjveizp2faflypp40khwop.lambda-url.us-west-1.on.aws/
+    
+    This endpoint will be used for when a story is created for a particular interview 
+       
+     object sent by frontend: 
+     
+     ```JSON 
+     {
+        "interview_id": String, 
+        "profile_id": String, 
+        "story_title": String, 
+        "story_content": String, 
+        "story_caption": String, 
+        "story_status": String (either draft or published),
+        "tags": String, 
+     }
+     ```
+     
+     object returned by backend
+     
+     ```JSON
+     { 
+       "message": "Story successfully saved!",
+       "statusCode": 200,
+       "story_id": String
+     }
+     ```
+     
+  6. #### `getStoryDraftTitles`
+   
+  endpoint url: https://3mitxjbibzqtrn4c4eermo574m0dmyss.lambda-url.us-west-1.on.aws/
+  
+  object returned by backend: array of story objects (containing title) that have a status of `drafts` 
+  
+  ```JSON 
+  [ 
+     {
+       "story_id": String, 
+       "story_title": String, 
+       "story_status": "draft"
+      },
+      ...
+  ]
+  ```
+    
+  7. #### `getStoryDrafts`
+  
+  endpoint url: https://fvmov42vtff3xcujf6obiz7wby0rrmxi.lambda-url.us-west-1.on.aws/
+  
+  object returned by backend: array of story objects that have a status of `drafts`
+  
+  ```JSON
+  [
+    {
+     "story_id": String,
+     "story_title": String, 
+     "story_content": String, 
+     "story_caption": String,
+     "story_status": String, 
+     "tags": String
+    },
+    ...
+  ]
+  ```
+  
+  ## Stories App 
+  
+  1. #### `getAllStories`
+  
+  object returned by backend: array of story objects that have a status of `published`
+  
+  ```JSON 
+  [ 
+    {
+      "story_id": String, 
+      "story_title": String,
+      "story_content": String,
+      "story_caption": String,
+      "story_status": String,
+      "tags": String 
+    }
+    ...
+  ]
+  ```

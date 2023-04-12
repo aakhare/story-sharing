@@ -11,7 +11,9 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.7",
+    "dayjs-plugin-utc": "^0.1.2",
     "jsonwebtoken": "^9.0.0",
+    "utc": "^0.1.0",
     "uuid": "^9.0.0"
   }
 }
