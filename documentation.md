@@ -543,6 +543,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   1. #### `getAllStories`
   
   endpoint url: https://r3gf3sqwyq3um7s3lxg54w3woi0tdhgp.lambda-url.us-west-1.on.aws/
+  
   object returned by backend: array of story objects that have a status of `published`
   
   ```JSON 
