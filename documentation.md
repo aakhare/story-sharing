@@ -385,6 +385,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
 2. #### `viewProfileDetails` 
     
     endpoint url: https://57vsoyp55a5jgdt472tjwsi5l40avkbn.lambda-url.us-west-1.on.aws/
+    alternate url (configured through api gateway): https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/profiles/profile-details
     
     This endpoint will be used to view profile details for a particular interview. 
     
@@ -410,6 +411,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
 3. #### `viewInterviewDetails` 
   
     endpoint url: https://dycviqm2d7r5wvkaojst72vide0yvbso.lambda-url.us-west-1.on.aws/
+    alternate url (configured through api gateway):  https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/interviews/interview-details
     
     This endpoint will be used to view interview details for a particular interview. 
     
