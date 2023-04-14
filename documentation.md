@@ -335,7 +335,6 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     An array of all the interviews with that profile_id passed in by the frontend
     
     ```JSON
-    {
       [ 
         {
             "interview_title": String,
@@ -353,7 +352,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
             "interview_date" : date.toISOString(), 
         }
       ]
-    }
+    
     ````
     
  ## Content Managing 
@@ -383,11 +382,36 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
    
  The following two endpoints will be used for when an interview is selected from the table. 
 
-2. #### `viewInterviewDetails` 
+2. #### `viewProfileDetails` 
+    
+    endpoint url: https://57vsoyp55a5jgdt472tjwsi5l40avkbn.lambda-url.us-west-1.on.aws/
+    
+    This endpoint will be used to view profile details for a particular interview. 
+    
+    object sent by frontend:
+    
+    ```JSON 
+    {
+       "profile_id": String,
+       "interview_id": String
+    }
+    ```
+    
+    object sent by backend: 
+    
+    ```JSON 
+    {
+       "profile_id": String,
+       "name": String,
+       "contact_info": String
+    }
+    ```
+    
+3. #### `viewInterviewDetails` 
   
     endpoint url: https://dycviqm2d7r5wvkaojst72vide0yvbso.lambda-url.us-west-1.on.aws/
     
-    This endpoint will be used to view profile details and interview details for a particular interview. 
+    This endpoint will be used to view interview details for a particular interview. 
     
     Note that for the interview_content field, frontend will recieve the file key to the S3 bucket. Add this https://testbucket63419.s3.us-west-1.amazonaws.com/ to the front of the file key to obtain the full url of the interview. 
     For example, if the file key from the interview_content field is `990e5e3a-a8af-43ae-ad03-c7fdda1e5e84_Interviews/video/e83d3ea0-a8c8-4387-b6a3-65550685dae1.mp4` then the full url for this interview will be https://testbucket63419.s3.us-west-1.amazonaws.com/990e5e3a-a8af-43ae-ad03-c7fdda1e5e84_Interviews/video/e83d3ea0-a8c8-4387-b6a3-65550685dae1.mp4
@@ -404,26 +428,19 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     object returned by backend:
     
     ```JSON 
-    [
-       {
-          "profile_id": String, 
-          "name": String,
-          "contact_info": String
-       },
-       {
-          "interview_title": String, 
-          "interview_content" : String (will be the url to S3 Bucket),
-          "interview_description" : String, 
-          "interview_date": String,
-          "interview_status": String,
-          "interview_format": String,
-          "is_anonymous": Boolean
-          "flagged": Boolean
-       }
-    ]
+   {
+      "interview_title": String, 
+      "interview_content" : String (will be the url to S3 Bucket),
+      "interview_description" : String, 
+      "interview_date": String,
+      "interview_status": String,
+      "interview_format": String,
+      "is_anonymous": Boolean
+      "flagged": Boolean
+    }
     ```
     
- 3. #### `updateInterviewStatus`
+ 4. #### `updateInterviewStatus`
 
     endpoint url: https://dvrt45c2ufmpe2qjrragaltbzy0miwel.lambda-url.us-west-1.on.aws/
     
@@ -447,7 +464,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
- 4. #### `udpateInterviewFlag` 
+ 5. #### `udpateInterviewFlag` 
     
     endpoint url: https://r5bdrlrz4ctjxvzypqrgo2dasm0pokws.lambda-url.us-west-1.on.aws/
     
@@ -471,7 +488,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
       
- 5. #### `createStory`
+ 6. #### `createStory`
     
     endpoint url: https://ablaevqomwtjveizp2faflypp40khwop.lambda-url.us-west-1.on.aws/
     
@@ -501,7 +518,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
      }
      ```
      
-  6. #### `getStoryDraftTitles`
+  7. #### `getStoryDraftTitles`
    
   endpoint url: https://3mitxjbibzqtrn4c4eermo574m0dmyss.lambda-url.us-west-1.on.aws/
   
@@ -518,7 +535,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   ]
   ```
     
-  7. #### `getStoryDrafts`
+  8. #### `getStoryDrafts`
   
   endpoint url: https://fvmov42vtff3xcujf6obiz7wby0rrmxi.lambda-url.us-west-1.on.aws/
   
