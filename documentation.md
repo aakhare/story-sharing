@@ -1,6 +1,6 @@
 # Database Schema 
 
-Below is the database schema for the entire project. Four key tables will be used: **user**, **profile**, **interview**, and **stories**, across all applications made. The user table will consist of data pertaining to the admin team for them to create an account and log in. The profile table will consist of personal information pertaining to the participant being interviewed. The interview table will consist of all relevant data about the interview, as it is taken. And finally, the stories table will contain all data pertinent to the story that will ultimately feature the stories application. The ids in every table will help providing an unique identifier for every new iterm
+Below is the database schema for the entire project. Four key tables will be used: **user**, **profile**, **interview**, and **stories**, across all applications made. The user table will consist of data pertaining to the admin team for them to create an account and log in. The profile table will consist of personal information pertaining to the participant being interviewed. The interview table will consist of all relevant data about the interview, as it is taken. And finally, the stories table will contain all data pertinent to the story that will ultimately feature the stories application. The ids in every table will help providing an unique identifier for every new item
 
 ## user table
 
@@ -47,7 +47,7 @@ Below is the database schema for the entire project. Four key tables will be use
 | story_content  | String |
 | story_status | String |
 | story_title | String |
-| tags    | String |
+| tags    | List |
 
 
 
@@ -87,7 +87,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
 
 | story_id  | interview_id   | profile_id  | story_title | story_caption | story_content | tags | story_status 
 | :---     | :---    | :---      | :---      | :---      | :---    | :---   | :---   
-| "93db2af2-ce28-424a-b12c-822be27e671d" | "8922c504-68d4-4c13-88fa-c05f271803b4" | "e9a94732-176e-4b4b-bf03-32461ada23bb" | "Growing Health Concerns in Uganda" | "Learn about health issues with pregnancy" | "In an interview with... " | "health" | "published" |
+| "93db2af2-ce28-424a-b12c-822be27e671d" | "8922c504-68d4-4c13-88fa-c05f271803b4" | "e9a94732-176e-4b4b-bf03-32461ada23bb" | "Growing Health Concerns in Uganda" | "Learn about health issues with pregnancy" | "In an interview with... " | ["health", "education"] | "published" |
 
 
 # Endpoints 
