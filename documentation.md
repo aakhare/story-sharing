@@ -556,7 +556,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
      "story_content": String, 
      "story_caption": String,
      "story_status": String, 
-     "tags": String
+     "tags": List
     },
     ...
   ]
@@ -578,7 +578,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
       "story_content": String,
       "story_caption": String,
       "story_status": String,
-      "tags": String 
+      "tags": List 
     }
     ...
   ]
