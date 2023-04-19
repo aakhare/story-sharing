@@ -447,7 +447,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
  4. #### `updateInterviewStatus`
 
-    endpoint url: https://dvrt45c2ufmpe2qjrragaltbzy0miwel.lambda-url.us-west-1.on.aws/
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/interviews/update-status
     
     This endpoint will be used to update the interview status from the interview details page 
     
@@ -471,7 +471,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
  5. #### `udpateInterviewFlag` 
     
-    endpoint url: https://r5bdrlrz4ctjxvzypqrgo2dasm0pokws.lambda-url.us-west-1.on.aws/
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/interviews/update-flag
     
     This endpoint will be used to update the interview flag from the interview details page
     
@@ -509,7 +509,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
         "story_content": String, 
         "story_caption": String, 
         "story_status": String (either draft or published),
-        "tags": List, 
+        "tags": String, 
      }
      ```
      
@@ -542,7 +542,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
   8. #### `getStoryDrafts`
   
-  endpoint url: https://e2axnlqsmnr246cf3hfcff7vtq0ishdx.lambda-url.us-west-1.on.aws/
+  endpoint url: https://atofxysuihvyatot44tk5vhtuy0qlmtw.lambda-url.us-west-1.on.aws/
   
   api gateway url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/get-stories/drafts
   
@@ -556,7 +556,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
      "story_content": String, 
      "story_caption": String,
      "story_status": String, 
-     "tags": List
+     "tags": String
     },
     ...
   ]
@@ -578,7 +578,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
       "story_content": String,
       "story_caption": String,
       "story_status": String,
-      "tags": List 
+      "tags": String 
     }
     ...
   ]
