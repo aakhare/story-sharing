@@ -480,7 +480,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     ```JSON 
     {
        "interview_id": String, 
-       "flag": Boolean, 
+       "flagged": Boolean, 
     }
     ```
     
