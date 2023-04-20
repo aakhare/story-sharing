@@ -471,7 +471,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
  5. #### `udpateInterviewFlag` 
     
-    endpoint url: https://gtof5fxm76yctedlqxhvsafxp40uqoot.lambda-url.us-west-1.on.aws/
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/interviews/update-flag
     
     This endpoint will be used to update the interview flag from the interview details page
     
