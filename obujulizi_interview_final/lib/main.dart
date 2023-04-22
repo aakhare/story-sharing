@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         textButtonTheme: MyTextButtonTheme().theme(),
         textSelectionTheme: MyTextSelectionTheme().theme(),
       ),
-      initialRoute: RoutesName.home,
+      initialRoute: RoutesName.splash,
       onGenerateRoute: Routes.generateRoute,
     );
   }
