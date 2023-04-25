@@ -562,6 +562,34 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   ]
   ```
   
+  9. ### `updateStoryDrafts`
+  
+  endpoint url:  https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/stories/update
+  
+  object sent by frontend:
+  
+  ```JSON
+  {
+    "inteview_id": String,
+    "profile_id": String,
+    "story_id": String,
+    "story_title": String,
+    "story_caption": String,
+    "story_status": String,
+    "story_content": String,
+    "tags": String
+  }
+  ```
+  
+  object returned by backend:
+  
+  ```JSON
+  {
+    "statusCode": 200
+    "message": "Update Successfully"
+  }
+  ```
+  
   ## Stories App 
   
   1. #### `getAllStories`
