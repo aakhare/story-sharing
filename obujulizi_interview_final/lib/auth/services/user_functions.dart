@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:obujulizi_interview_final/auth/services/user_model.dart';
@@ -42,6 +43,7 @@ class UserAuthentication {
             });
       }
     } catch (e) {
+      log(e.toString());
       showMessageSnackBar(context, e.toString());
     }
   }
@@ -66,6 +68,7 @@ class UserAuthentication {
             });
       }
     } catch (e) {
+      log(e.toString());
       showMessageSnackBar(context, e.toString());
     }
   }
@@ -77,7 +80,8 @@ class UserAuthentication {
   }) async {
     try {
       http.Response res = await http.post(
-          Uri.parse('https://grhys5d6mv2zr2brcm4g7vrmhu0uegxn.lambda-url.us-west-1.on.aws/'),
+          Uri.parse(
+              'https://grhys5d6mv2zr2brcm4g7vrmhu0uegxn.lambda-url.us-west-1.on.aws/'),
           body: jsonEncode({'email': email, 'password': password}),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
@@ -98,6 +102,7 @@ class UserAuthentication {
             });
       }
     } catch (e) {
+      log(e.toString());
       showMessageSnackBar(context, e.toString());
     }
   }

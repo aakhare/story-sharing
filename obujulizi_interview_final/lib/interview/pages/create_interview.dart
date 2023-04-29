@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:after_layout/after_layout.dart';
 import 'package:obujulizi_interview_final/interview/all.dart';
 import 'package:obujulizi_interview_final/utils/all.dart';
 import 'package:obujulizi_interview_final/widgets/all.dart';
+import 'package:provider/provider.dart';
 
 class CreateInterviewPage extends StatefulWidget {
   final String profileId;
@@ -18,8 +18,7 @@ class CreateInterviewPage extends StatefulWidget {
   State<CreateInterviewPage> createState() => CreateInterviewPageState();
 }
 
-class CreateInterviewPageState extends State<CreateInterviewPage>
-    with AfterLayoutMixin<CreateInterviewPage> {
+class CreateInterviewPageState extends State<CreateInterviewPage> {
   bool isChecked = false;
   final formKey = GlobalKey<FormState>();
 
@@ -56,8 +55,14 @@ class CreateInterviewPageState extends State<CreateInterviewPage>
     return info;
   }
 
+  late final Future<UploadInfo> uploadInfo;
+
   @override
-  void afterFirstLayout(BuildContext context) {}
+  void initState() {
+    super.initState();
+
+    uploadInfo = getUploadInfo();
+  }
 
   @override
   void dispose() {
@@ -70,7 +75,6 @@ class CreateInterviewPageState extends State<CreateInterviewPage>
 
   @override
   Widget build(BuildContext context) {
-    Future<UploadInfo> uploadInfo = getUploadInfo();
     return Scaffold(
       body: Scrollbar(
         thumbVisibility: true,

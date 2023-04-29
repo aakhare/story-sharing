@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:obujulizi_interview_final/interview/services/interview_provider.dart';
 import 'package:obujulizi_interview_final/utils/all.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+            ChangeNotifierProvider<InterviewStateProvider>(
+                create: (_) => InterviewStateProvider()),
+          ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
