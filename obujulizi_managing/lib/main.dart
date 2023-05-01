@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         textSelectionTheme: MyTextSelectionTheme().theme(),
         tabBarTheme: MyTabBarTheme().theme(),
       ),
-      initialRoute: RoutesName.home,
+      initialRoute: RoutesName.login,
       onGenerateRoute: Routes.generateRoute,
     );
   }
