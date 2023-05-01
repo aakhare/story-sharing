@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:obujulizi_managing/interviews/services/interview_functions.dart';
-import 'package:obujulizi_managing/interviews/services/interview_model.dart';
+import 'package:obujulizi_managing/interviews/all.dart';
+import 'package:obujulizi_managing/stories/all.dart';
 import 'package:obujulizi_managing/utils/all.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class DashBoardContent extends StatefulWidget {
   const DashBoardContent({super.key});
@@ -13,78 +13,82 @@ class DashBoardContent extends StatefulWidget {
 
 class DashBoardContentState extends State<DashBoardContent> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Future<List<Interview>> futureInterviews =
         InterviewCreation.getAllInterviews(context: context);
     Future<List<Story>> futureStories =
-        InterviewCreation.getAllStories(context: context);
+        DraftFunction.getAllStories(context: context);
     Future<List<Draft>> futureDrafts =
-        InterviewCreation.getAllDrafts(context: context);
+        DraftFunction.getAllDrafts(context: context);
 
     double screenWidth = MediaQuery.of(context).size.width;
     var headerSpacing = SizedBox(width: screenWidth * 0.05);
 
-    return SingleChildScrollView(
-      child: Column(children: [
-        Row(children: [
-          headerSpacing,
-          const Text("Current Statistics", style: headline1),
-        ]),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(
-              width: 450,
-              height: 450,
-              child: FutureBuilder<List<Interview>>(
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(children: [
+          extraLargeVertical,
+          Row(children: [
+            headerSpacing,
+            const Text("Current Statistics", style: headline1),
+          ]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              FutureBuilder<List<Interview>>(
                   future: futureInterviews,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       final interviews = snapshot.data!;
                       return getInterviewsData(interviews);
                     } else {
-                      return const Text("Data Loading");
+                      return const Text("Loading");
                     }
                   }),
-            ),
-            Column(
-              children: [
-                FutureBuilder<List<Draft>>(
-                    future: futureDrafts,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final drafts = snapshot.data!;
-                        return buildDraftData(drafts);
-                      } else {
-                        return const Text("No Data");
-                      }
-                    }),
-                largeVertical,
-                FutureBuilder<List<Story>>(
-                    future: futureStories,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final stories = snapshot.data!;
-                        return buildStoryData(stories);
-                      } else {
-                        return const Text("No Data");
-                      }
-                    }),
-              ],
-            ),
-          ],
-        ),
-        FutureBuilder<List<Interview>>(
-            future: futureInterviews,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                final interviews = snapshot.data!;
-                return buildInterviews(interviews);
-              } else {
-                return const Text("No Data");
-              }
-            }),
-      ]),
+              Column(
+                children: [
+                  FutureBuilder<List<Draft>>(
+                      future: futureDrafts,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final drafts = snapshot.data!;
+                          return buildDraftData(drafts);
+                        } else {
+                          return const Text("Loading");
+                        }
+                      }),
+                  largeVertical,
+                  FutureBuilder<List<Story>>(
+                      future: futureStories,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final stories = snapshot.data!;
+                          return buildStoryData(stories);
+                        } else {
+                          return const Text("Loading");
+                        }
+                      }),
+                ],
+              ),
+            ],
+          ),
+          FutureBuilder<List<Interview>>(
+              future: futureInterviews,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  final interviews = snapshot.data!;
+                  return buildInterviews(interviews);
+                } else {
+                  return const Text("Loading");
+                }
+              }),
+        ]),
+      ),
     );
   }
 
@@ -105,7 +109,8 @@ class DashBoardContentState extends State<DashBoardContent> {
         smallVertical,
         Row(children: [
           headerSpacing,
-          const Text("* click on an interview to view its details", style: bodyText1),
+          const Text("* click on an interview to view its details",
+              style: bodyText1),
         ]),
         smallVertical,
         Container(
@@ -115,10 +120,11 @@ class DashBoardContentState extends State<DashBoardContent> {
             boxShadow: kElevationToShadow[4],
           ),
           child: const ListTile(
+              horizontalTitleGap: 50,
               leading: Text("Status"),
-              title: Text("Title"),
-              subtitle: Text("format"),
-              trailing: Text("Date")),
+              title: Text("Title", style: headline3),
+              subtitle: Text("format", style: bodyText1),
+              trailing: Text("Date", style: bodyText2)),
         ),
         Container(
           width: screenWidth * 0.90,
@@ -144,16 +150,24 @@ class DashBoardContentState extends State<DashBoardContent> {
                   decoration:
                       const BoxDecoration(border: Border(bottom: BorderSide())),
                   child: ListTile(
+                      horizontalTitleGap: 50,
                       leading: status,
-                      title: Text(interview.title),
-                      subtitle: Text(interview.format),
-                      trailing: Text(interview.date),
+                      title: Row(
+                        children: [
+                          Text(interview.title, style: headline3),
+                        ],
+                      ),
+                      subtitle: Text(interview.format, style: bodyText1),
+                      trailing: Text(interview.date, style: bodyText2),
                       onTap: () {
                         Navigator.pushNamed(
-                            context, RoutesName.viewInterviewDetails,
-                            arguments: IdInfo(
-                                profileId: interview.profileId,
-                                interviewId: interview.interviewId));
+                                context, RoutesName.viewInterviewDetails,
+                                arguments: IdInfo(
+                                    profileId: interview.profileId,
+                                    interviewId: interview.interviewId))
+                            .then((_) {
+                          setState(() {});
+                        });
                       }),
                 );
               }),
@@ -163,45 +177,122 @@ class DashBoardContentState extends State<DashBoardContent> {
     );
   }
 
-  Widget getInterviewsData(List<Interview> interviews) {
+  SizedBox getInterviewsData(List<Interview> interviews) {
     double greenNum = 0;
     double blueNum = 0;
     double yellowNum = 0;
     double redNum = 0;
+    double total = 0;
 
     for (var interview in interviews) {
       if (interview.status == "APPROVED") {
         greenNum++;
+        total++;
       } else if (interview.status == "PENDING") {
         blueNum++;
+        total++;
       } else if (interview.status == "LAID ASIDE") {
         yellowNum++;
+        total++;
       } else if (interview.status == "DENIED") {
         redNum++;
+        total++;
       }
     }
-    final List<ChartData> chartData = [
-      ChartData('Approved', greenNum, green),
-      ChartData('Pending', blueNum, blue),
-      ChartData('Laid Aside', yellowNum, yellow),
-      ChartData('Denied', redNum, red)
+
+    final List<Data> data = [
+      Data(
+          name: 'Approved',
+          percent: (greenNum / total) * 100,
+          color: green,
+          radius: 175),
+      Data(
+          name: 'Pending',
+          percent: (blueNum / total) * 100,
+          color: blue,
+          radius: 175),
+      Data(
+          name: 'Laid Aside',
+          percent: (yellowNum / total) * 100,
+          color: yellow,
+          radius: 175),
+      Data(
+          name: 'Denied',
+          percent: (redNum / total) * 100,
+          color: red,
+          radius: 175)
     ];
-    return SfCircularChart(
-        legend: Legend(isVisible: true),
-        series: <CircularSeries>[
-          PieSeries<ChartData, String>(
-              dataSource: chartData,
-              legendIconType: LegendIconType.horizontalLine,
-              pointColorMapper: (ChartData data, _) => data.color,
-              xValueMapper: (ChartData data, _) => data.x,
-              yValueMapper: (ChartData data, _) => data.y)
-        ]);
+    return SizedBox(
+      width: 450,
+      height: 450,
+      child: Row(
+        children: [
+          Flexible(
+            child: PieChart(
+              PieChartData(
+                  sections: getSection(data),
+                  sectionsSpace: 2,
+                  centerSpaceRadius: 0),
+            ),
+          ),
+          Flexible(
+            child: Column(
+              children: [
+                extraLargeVertical,
+                extraLargeVertical,
+                extraLargeVertical,
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  largeHorizontal,
+                  largeHorizontal,
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: data
+                              .map((data) => Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
+                                  child: buildLegend(
+                                      color: data.color, labels: data.name)))
+                              .toList()))
+                ]),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
+
+  Widget buildLegend({required Color color, required String labels}) {
+    return Row(children: <Widget>[
+      Container(
+          width: 10,
+          height: 10,
+          decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
+      smallHorizontal,
+      Text(labels, style: bodyText2)
+    ]);
+  }
+
+  List<PieChartSectionData> getSection(List<Data> data) => data
+      .asMap()
+      .map<int, PieChartSectionData>((index, data) {
+        final value = PieChartSectionData(
+            title: "${data.percent}%",
+            titleStyle: otherBody,
+            value: data.percent,
+            color: data.color,
+            radius: data.radius);
+        return MapEntry(index, value);
+      })
+      .values
+      .toList();
 
   Widget buildDraftData(List<Draft> drafts) {
     int numDrafts = drafts.length;
     return Container(
-        width: 400,
+        width: 450,
         height: 100,
         decoration: BoxDecoration(
             gradient: const LinearGradient(
@@ -220,7 +311,7 @@ class DashBoardContentState extends State<DashBoardContent> {
   Widget buildStoryData(List<Story> stories) {
     int numStories = stories.length;
     return Container(
-        width: 400,
+        width: 450,
         height: 100,
         decoration: BoxDecoration(
             gradient: const LinearGradient(
@@ -237,9 +328,15 @@ class DashBoardContentState extends State<DashBoardContent> {
   }
 }
 
-class ChartData {
-  ChartData(this.x, this.y, this.color);
-  final String x;
-  final double y;
+class Data {
+  final String name;
+  final double percent;
   final Color color;
+  final double radius;
+
+  Data(
+      {required this.name,
+      required this.percent,
+      required this.color,
+      required this.radius});
 }

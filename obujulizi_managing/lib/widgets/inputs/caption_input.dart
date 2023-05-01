@@ -5,12 +5,14 @@ class CaptionField extends StatelessWidget {
   final FocusNode? nextFocusNode;
   final FocusNode? focusNode;
   final TextEditingController? controller;
+  final String? placeholder;
   const CaptionField({
     Key? key,
     required this.validator,
     this.nextFocusNode,
     this.focusNode,
     this.controller,
+    this.placeholder,
   }) : super(key: key);
 
   @override

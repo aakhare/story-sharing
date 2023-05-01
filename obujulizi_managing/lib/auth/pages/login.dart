@@ -56,11 +56,11 @@ class LoginPageState extends State<LoginPage> {
                 mediumVertical,
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: title,
+                  child: titleLogin,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: caption,
+                  child: captionLogin,
                 ),
                 largeVertical,
                 Container(

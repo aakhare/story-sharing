@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:obujulizi_managing/auth/pages/login.dart';
 import 'package:obujulizi_managing/utils/all.dart';
 
 class TabBarLayout extends StatelessWidget {
@@ -11,9 +12,23 @@ class TabBarLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Text("Obujulizi Share", style: tabHeader),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            SizedBox(
+                width: 42,
+                height: 42,
+                child: Image.asset("assets/icons/main_icon.png")),
+                smallHorizontal,
+            Column(
+              children: [
+                title,
+                caption
+              ],
+            ),
+          ],
+        ),
       ),
       SizedBox(
           width: 500, child: TabBar(controller: tabController, tabs: tabs)),
@@ -21,7 +36,7 @@ class TabBarLayout extends StatelessWidget {
         icon: const Icon(Icons.account_box),
         onSelected: (value) {
           if (value == AccountOptions.logout) {
-            Navigator.pushNamed(context, RoutesName.login);
+            Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context) => const LoginPage()), (route) => false);
           }
         },
         itemBuilder: (context) => [

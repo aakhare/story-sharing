@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:obujulizi_managing/interviews/pages/create_story.dart';
 import 'package:obujulizi_managing/interviews/pages/dashboard_content.dart';
-import 'package:obujulizi_managing/interviews/pages/drafts_content.dart';
+import 'package:obujulizi_managing/stories/pages/drafts_content.dart';
 import 'package:obujulizi_managing/interviews/pages/home_content.dart';
 import 'package:obujulizi_managing/widgets/top_nav/custom_tab.dart';
 

@@ -5,16 +5,20 @@ import 'package:obujulizi_managing/utils/constants/colors.dart';
 //Special
 var title = Text("Obujulizi Share",
     style: GoogleFonts.playfairDisplay(
-        textStyle: const TextStyle(
-            fontSize: 42, fontWeight: FontWeight.w800, color: white)));
+        textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.w800)));
+var titleLogin = Text("Obujulizi Share",
+    style: GoogleFonts.playfairDisplay(
+        textStyle: const TextStyle(fontSize: 42, fontWeight: FontWeight.w800, color: white)));
 var header = Text("Obujulizi Share",
     style: GoogleFonts.playfairDisplay(
         textStyle: const TextStyle(
             fontSize: 36, fontWeight: FontWeight.w800, color: white)));
 var caption = Text("Managing App",
     style: GoogleFonts.cinzel(
-        textStyle: const TextStyle(
-            fontSize: 24, fontWeight: FontWeight.bold, color: white)));
+        textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)));
+        var captionLogin = Text("Managing App",
+    style: GoogleFonts.cinzel(
+        textStyle: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: white)));
 
 //Display
 const display = TextStyle(fontSize: 45, fontWeight: FontWeight.w800);

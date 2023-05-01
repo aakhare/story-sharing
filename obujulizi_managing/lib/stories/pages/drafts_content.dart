@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:obujulizi_managing/interviews/services/interview_functions.dart';
-import 'package:obujulizi_managing/interviews/services/interview_model.dart';
+import 'package:obujulizi_managing/stories/all.dart';
 import 'package:obujulizi_managing/utils/all.dart';
 
 class DraftsContent extends StatefulWidget {
@@ -11,23 +10,23 @@ class DraftsContent extends StatefulWidget {
 }
 
 class DraftsContentState extends State<DraftsContent> {
-
   @override
   Widget build(BuildContext context) {
-        Future<List<Draft>> futureDrafts =
-        InterviewCreation.getAllDrafts(context: context);
+    Future<List<Draft>> futureDrafts =
+        DraftFunction.getAllDrafts(context: context);
     return SingleChildScrollView(
       child: Column(children: [
+        extraLargeVertical,
         FutureBuilder<List<Draft>>(
-                    future: futureDrafts,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final drafts = snapshot.data!;
-                        return buildInterviews(drafts);
-                      } else {
-                        return const Text("No Data");
-                      }
-                    }),
+            future: futureDrafts,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final drafts = snapshot.data!;
+                return buildInterviews(drafts);
+              } else {
+                return const Text("No Data");
+              }
+            }),
       ]),
     );
   }
@@ -46,7 +45,8 @@ class DraftsContentState extends State<DraftsContent> {
         smallVertical,
         Row(children: [
           headerSpacing,
-          const Text("* click on a draft to create a story with it", style: bodyText1),
+          const Text("* click on a draft to create a story with it",
+              style: bodyText1),
         ]),
         smallVertical,
         Container(
@@ -56,7 +56,8 @@ class DraftsContentState extends State<DraftsContent> {
             boxShadow: kElevationToShadow[4],
           ),
           child: const ListTile(
-              title: Text("Title"),),
+            title: Text("Title"),
+          ),
         ),
         Container(
           width: screenWidth * 0.90,
@@ -77,9 +78,21 @@ class DraftsContentState extends State<DraftsContent> {
                       title: Text(draft.title),
                       onTap: () {
                         Navigator.pushNamed(
-                            context, RoutesName.viewInterviewDetails,
-                            //add arguments
-                            );
+                          context,
+                          RoutesName.viewDraft,
+                          arguments: Draft(
+                              title: draft.title,
+                              content: draft.content,
+                              caption: draft.caption,
+                              status: draft.status,
+                              tags: draft.tags,
+                              draftId: draft.draftId,
+                              interviewId: draft.interviewId,
+                              profileId: draft.profileId)
+                          //add arguments
+                        ).then((_) {
+                          setState(() {});
+                        });
                       }),
                 );
               }),

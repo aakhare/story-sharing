@@ -80,23 +80,6 @@ class InterviewStuff {
       required this.flagged});
 }
 
-class Story {
-  final String id;
-  final String title;
-  final String content;
-  final String caption;
-  final String status;
-  final String tags;
-
-  Story(
-      {required this.id,
-      required this.title,
-      required this.content,
-      required this.caption,
-      required this.status,
-      required this.tags});
-}
-
 class IdInfo {
   final String interviewId;
   final String profileId;
@@ -115,22 +98,4 @@ class IdInfo {
   String toJson() => json.encode(toMap());
   factory IdInfo.fromJson(String source) => IdInfo.fromMap(json.decode(source));
 }
-
-class Draft {
-  final String id;
-  final String title;
-  final String content;
-  final String caption;
-  final String status;
-  final String tags;
-
-  Draft(
-      {required this.id,
-      required this.title,
-      required this.content,
-      required this.caption,
-      required this.status,
-      required this.tags});
-}
-
 

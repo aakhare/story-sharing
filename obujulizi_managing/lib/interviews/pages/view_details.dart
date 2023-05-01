@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:obujulizi_managing/interviews/pages/audio.dart';
-import 'package:obujulizi_managing/interviews/pages/text.dart';
-import 'package:obujulizi_managing/interviews/pages/video.dart';
-import 'package:obujulizi_managing/interviews/services/interview_functions.dart';
-import 'package:obujulizi_managing/interviews/services/interview_model.dart';
+import 'package:obujulizi_managing/interviews/all.dart';
 import 'package:obujulizi_managing/utils/all.dart';
+import 'package:obujulizi_managing/widgets/buttons/back_button.dart';
 
 class ViewInterviewDetailsPage extends StatefulWidget {
   final String profileId;
@@ -40,12 +37,20 @@ class ViewInterviewDetailsPageState extends State<ViewInterviewDetailsPage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     var headerSpacing = SizedBox(width: screenWidth * 0.05);
+    var spacing = SizedBox(width: screenWidth * 0.0225);
     Future<Profile> profileDetails = getProfile();
     Future<InterviewStuff> interviewDetails = getInterview();
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(children: [
-        mediumVertical,
+        largeVertical,
+        Row(
+          children: [
+            spacing,
+            const MyBackButton(),
+          ],
+        ),
+        smallVertical,
         Row(
           children: [
             headerSpacing,
@@ -93,19 +98,20 @@ class ViewInterviewDetailsPageState extends State<ViewInterviewDetailsPage> {
       width: screenWidth * 0.90,
       decoration: BoxDecoration(color: white, boxShadow: kElevationToShadow[4]),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(12.0),
         child:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Row(
             children: [
               const Text("Name: ", style: headline3),
-              Text(profile.name, style: bodyText2),
+              Text(profile.name, style: bodyText3),
             ],
           ),
+          smallVertical,
           Row(
             children: [
               const Text("Contact Information: ", style: headline3),
-              Text(profile.contactInfo, style: bodyText2),
+              Text(profile.contactInfo, style: bodyText3),
             ],
           )
         ]),
@@ -119,7 +125,6 @@ class ViewInterviewDetailsPageState extends State<ViewInterviewDetailsPage> {
     var headerSpacing = SizedBox(width: screenWidth * 0.05);
     double screenHeight = MediaQuery.of(context).size.height;
     String format = interview.format;
-    bool flag = interview.flagged;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Row(
         children: [
@@ -140,19 +145,19 @@ class ViewInterviewDetailsPageState extends State<ViewInterviewDetailsPage> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Format: $format", style: headline3),
-            Text("Format: $flag", style: headline3),
             smallVertical,
             interviewCondition(format, interview),
             mediumVertical,
             const Text("Description", style: headline3),
             smallVertical,
-            Scrollbar(
+            Container(
+              width: screenWidth * 0.45,
+              height: screenHeight * 0.35,
+              decoration: BoxDecoration(
+                  color: white, boxShadow: kElevationToShadow[4]),
               child: SingleChildScrollView(
-                child: Container(
-                  width: screenWidth * 0.45,
-                  height: screenHeight * 0.35,
-                  decoration: BoxDecoration(
-                      color: white, boxShadow: kElevationToShadow[4]),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
                   child: Text(interview.description, style: bodyText2),
                 ),
               ),
@@ -160,10 +165,12 @@ class ViewInterviewDetailsPageState extends State<ViewInterviewDetailsPage> {
           ]),
         ),
         headerSpacing,
+        headerSpacing,
         SizedBox(
           width: screenWidth * 0.45,
           child: Column(
             children: [
+              largeVertical,
               const Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Choose Status", style: headline3)),
@@ -234,7 +241,7 @@ class RadioButtonWidget extends StatefulWidget {
 
 class _RadioButtonWidgetState extends State<RadioButtonWidget> {
   int? radioValue = 0;
-  bool isChecked = false;
+  bool? isChecked = false;
   String status = '';
   bool flagged = false;
   InterviewCreation interviewCreation = InterviewCreation();
@@ -244,7 +251,7 @@ class _RadioButtonWidgetState extends State<RadioButtonWidget> {
         context: context, interviewId: widget.interviewId, status: status);
   }
 
-  void updateFlag(bool flag) async {
+  void updateFlag(bool? flag) async {
     interviewCreation.updateInterviewFlag(
         context: context, interviewId: widget.interviewId, flag: flag);
   }
@@ -268,6 +275,13 @@ class _RadioButtonWidgetState extends State<RadioButtonWidget> {
         radioValue = 4;
       });
     }
+
+    if (widget.isFlagged == true) {
+      setState(() {
+        isChecked = true;
+      });
+    }
+
     super.initState();
   }
 
@@ -306,7 +320,6 @@ class _RadioButtonWidgetState extends State<RadioButtonWidget> {
               setState(() {
                 radioValue = value;
               });
-              ;
             }),
         smallVertical,
         const Text("Follow Up"),
@@ -362,8 +375,9 @@ class _RadioButtonWidgetState extends State<RadioButtonWidget> {
           },
           label: const Text("Save"),
         ),
+
       ),
-      smallVertical,
+     smallVertical,
       Row(
         children: [
           Align(

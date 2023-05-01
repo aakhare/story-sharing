@@ -1,11 +1,8 @@
 import 'dart:developer';
-
-import 'package:dio/dio.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:obujulizi_managing/interviews/services/interview_functions.dart';
 import 'package:obujulizi_managing/utils/all.dart';
-import 'package:path_provider/path_provider.dart';
 
 class TextInterview extends StatefulWidget {
   final String text;
@@ -19,7 +16,7 @@ class _TextInterviewState extends State<TextInterview> {
   final InterviewCreation interviewCreation = InterviewCreation();
 
   Future<String> getTextFile() async {
-    String text = await interviewCreation.getTextFile(key: widget.text);
+    String text = await interviewCreation.getTextFile(key: widget.text, context: context);
     return text;
   }
 
@@ -35,7 +32,7 @@ class _TextInterviewState extends State<TextInterview> {
 
   @override
   initState() {
-    download();
+    // download();
     super.initState();
   }
 
@@ -50,8 +47,19 @@ class _TextInterviewState extends State<TextInterview> {
                 future: text,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    final contents = snapshot.data!;
-                    return textInput(contents);
+                    // final contents = snapshot.data!;/
+                    return Row(
+                      children: [
+                        FloatingActionButton.extended(
+                          onPressed: () {
+                            download();
+                          },
+                          icon: const Icon(Icons.download_sharp, size: 42),
+                        label: const Text("Download content")
+                        ),
+                      ],
+                    );
+                    //textInput(contents);
                   } else {
                     return const Text("No Data");
                   }
@@ -65,7 +73,6 @@ class _TextInterviewState extends State<TextInterview> {
   Widget textInput(String text) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    print(text);
     return Container(
       width: screenWidth * 0.45,
       height: screenHeight * 0.35,

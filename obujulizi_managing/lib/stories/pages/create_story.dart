@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:obujulizi_managing/interviews/services/interview_functions.dart';
+import 'package:obujulizi_managing/stories/services/draft_functions.dart';
 import 'package:obujulizi_managing/utils/all.dart';
-import 'package:obujulizi_managing/widgets/inputs/caption_input.dart';
-import 'package:obujulizi_managing/widgets/inputs/multiline_input.dart';
-import 'package:obujulizi_managing/widgets/inputs/tag_input.dart';
-import 'package:obujulizi_managing/widgets/inputs/title_input.dart';
+import 'package:obujulizi_managing/widgets/all.dart';
 
 class CreateStory extends StatefulWidget {
   final String interviewId;
@@ -42,10 +39,10 @@ class CreateStoryState extends State<CreateStory> {
     super.dispose();
   }
 
-  InterviewCreation interviewCreation = InterviewCreation();
+  DraftFunction draftFunction = DraftFunction();
 
   void createDraft() {
-    interviewCreation.createStory(
+    draftFunction.createStory(
         context: context,
         title: _titleController.text.trim(),
         caption: _captionController.text.trim(),
@@ -57,7 +54,7 @@ class CreateStoryState extends State<CreateStory> {
   }
 
   void createStory() {
-    interviewCreation.createStory(
+    draftFunction.createStory(
         context: context,
         title: _titleController.text.trim(),
         caption: _captionController.text.trim(),
@@ -140,7 +137,7 @@ class CreateStoryState extends State<CreateStory> {
                 onPressed: () {
                   createDraft();
                 },
-                label: const Text("Save Draft"),
+                label: const Text("Create New Draft"),
               ),
             ),
             Flexible(
@@ -151,7 +148,7 @@ class CreateStoryState extends State<CreateStory> {
                     createStory();
                   }
                 },
-                label: const Text("Publish"),
+                label: const Text("Publish Story"),
               ),
             ),
           ],

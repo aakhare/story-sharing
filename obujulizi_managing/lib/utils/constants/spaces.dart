@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 //Pages
 const pagePadding = EdgeInsets.all(30);
+const largePagePadding = EdgeInsets.all(50);
 const smallPagePadding = EdgeInsets.all(15);
 const videoPadding = EdgeInsets.symmetric(vertical: 5);
 

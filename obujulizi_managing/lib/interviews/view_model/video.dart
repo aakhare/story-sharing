@@ -1,10 +1,10 @@
 import 'dart:developer';
-import 'dart:io';
 import 'package:chewie/chewie.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:obujulizi_managing/interviews/services/interview_functions.dart';
 import 'package:obujulizi_managing/utils/all.dart';
+// ignore: depend_on_referenced_packages
 import 'package:video_player/video_player.dart';
 
 class VideoInterview extends StatefulWidget {
@@ -16,8 +16,8 @@ class VideoInterview extends StatefulWidget {
 }
 
 class _VideoInterviewState extends State<VideoInterview> {
-  VideoPlayerController? _signaturePlayerController;
-  ChewieController? _signatureChewieController;
+  // VideoPlayerController? _signaturePlayerController;
+  // ChewieController? _signatureChewieController;
 
   VideoPlayerController? _contentPlayerController;
   ChewieController? _contentChewieController;
@@ -35,7 +35,7 @@ class _VideoInterviewState extends State<VideoInterview> {
 
   @override
   void initState() {
-    download();
+    // download();
     super.initState();
   }
 
@@ -63,23 +63,32 @@ class _VideoInterviewState extends State<VideoInterview> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      const Align(
-          alignment: Alignment.centerLeft,
-          child: Text("Video Interview", style: headline2)),
-      Padding(
-        padding: videoPadding,
-        child: (_contentChewieController != null)
-            ? 
-            AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Chewie(controller: _contentChewieController!))
-            : Container(
-                color: lightGrey,
-                width: 600,
-                height: 300,
-              ),
-      ),
-    ]);
+    return Row(
+      children: [
+        FloatingActionButton.extended(
+            onPressed: () {
+              download();
+            },
+            icon: const Icon(Icons.download_sharp, size: 42),
+            label: const Text("Download content")),
+      ],
+    );
+    // Column(children: [
+    //   const Align(
+    //       alignment: Alignment.centerLeft,
+    //       child: Text("Video Interview", style: headline2)),
+    //   Padding(
+    //     padding: videoPadding,
+    //     child: (_contentChewieController != null)
+    //         ? AspectRatio(
+    //             aspectRatio: 16 / 9,
+    //             child: Chewie(controller: _contentChewieController!))
+    //         : Container(
+    //             color: lightGrey,
+    //             width: 600,
+    //             height: 300,
+    //           ),
+    //   ),
+    // ]);
   }
 }
