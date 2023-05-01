@@ -543,6 +543,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   8. #### `getStoryDrafts`
   
   endpoint url: https://atofxysuihvyatot44tk5vhtuy0qlmtw.lambda-url.us-west-1.on.aws/
+  
   api gateway url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/stories/get-drafts
   
   object returned by backend: array of story objects that have a status of `drafts`
