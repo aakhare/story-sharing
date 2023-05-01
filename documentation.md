@@ -495,7 +495,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
       
  6. #### `createStory`
     
-    endpoint url: https://ablaevqomwtjveizp2faflypp40khwop.lambda-url.us-west-1.on.aws/
+    endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/stories/create
     
     This endpoint will be used for when a story is created for a particular interview 
        
