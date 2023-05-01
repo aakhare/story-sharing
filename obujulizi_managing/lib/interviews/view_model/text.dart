@@ -15,10 +15,10 @@ class TextInterview extends StatefulWidget {
 class _TextInterviewState extends State<TextInterview> {
   final InterviewCreation interviewCreation = InterviewCreation();
 
-  Future<String> getTextFile() async {
-    String text = await interviewCreation.getTextFile(key: widget.text, context: context);
-    return text;
-  }
+  // Future<String> getTextFile() async {
+  //   String text = await interviewCreation.getTextFile(key: widget.text, context: context);
+  //   return text;
+  // }
 
   Future<void> download() async {
     String path = await FileSaver.instance.saveFile(
@@ -38,36 +38,46 @@ class _TextInterviewState extends State<TextInterview> {
 
   @override
   Widget build(BuildContext context) {
-    Future<String> text = getTextFile();
-    return Scrollbar(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            FutureBuilder<String>(
-                future: text,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    // final contents = snapshot.data!;/
-                    return Row(
-                      children: [
-                        FloatingActionButton.extended(
-                          onPressed: () {
-                            download();
-                          },
-                          icon: const Icon(Icons.download_sharp, size: 42),
-                        label: const Text("Download content")
-                        ),
-                      ],
-                    );
-                    //textInput(contents);
-                  } else {
-                    return const Text("No Data");
-                  }
-                }),
-          ],
-        ),
-      ),
+    // Future<String> text = getTextFile();
+    return Row(
+      children: [
+        FloatingActionButton.extended(
+            onPressed: () {
+              download();
+            },
+            icon: const Icon(Icons.download_sharp, size: 42),
+            label: const Text("Download content")),
+      ],
     );
+    // Scrollbar(
+    //   child: SingleChildScrollView(
+    //     child: Column(
+    //       children: [
+    //         FutureBuilder<String>(
+    //             future: text,
+    //             builder: (context, snapshot) {
+    //               if (snapshot.hasData) {
+    //                 // final contents = snapshot.data!;/
+    //                 return Row(
+    //                   children: [
+    //                     FloatingActionButton.extended(
+    //                       onPressed: () {
+    //                         download();
+    //                       },
+    //                       icon: const Icon(Icons.download_sharp, size: 42),
+    //                     label: const Text("Download content")
+    //                     ),
+    //                   ],
+    //                 );
+    //                 //textInput(contents);
+    //               } else {
+    //                 return const Text("No Data");
+    //               }
+    //             }),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 
   Widget textInput(String text) {

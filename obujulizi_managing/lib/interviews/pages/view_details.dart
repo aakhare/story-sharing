@@ -322,7 +322,7 @@ class _RadioButtonWidgetState extends State<RadioButtonWidget> {
               });
             }),
         smallVertical,
-        const Text("Follow Up"),
+        const Text("Pending"),
       ]),
       Row(children: [
         Radio(

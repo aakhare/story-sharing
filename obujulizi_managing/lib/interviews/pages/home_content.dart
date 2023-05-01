@@ -63,27 +63,33 @@ class HomeContentState extends State<HomeContent> {
             Row(
               children: const [
                 largeHorizontal,
-                Text(
-                    "3.  Update the status of the interview (* only an admin member should mark it as approved)",
-                    style: bodyText2),
+                Expanded(
+                  child: Text(
+                      "3.  Update the status of the interview (* only an admin member should mark it as approved)",
+                      style: bodyText2),
+                ),
               ],
             ),
             extraSmallVertical,
             Row(
               children: const [
                 largeHorizontal,
-                Text(
-                    "4.  If the interview is marked as approved then create a story with it",
-                    style: bodyText2),
+                Expanded(
+                  child: Text(
+                      "4.  If the interview is marked as approved then create a story with it",
+                      style: bodyText2),
+                ),
               ],
             ),
             extraSmallVertical,
             Row(
               children: const [
                 largeHorizontal,
-                Text(
-                    "4.  Save the draft of the story and publish it if you are an admin member",
-                    style: bodyText2),
+                Expanded(
+                  child: Text(
+                      "5.  Save the draft of the story and publish it if you are an admin member",
+                      style: bodyText2),
+                ),
               ],
             ),
             extraSmallVertical,

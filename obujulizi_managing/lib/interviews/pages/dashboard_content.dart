@@ -62,7 +62,7 @@ class DashBoardContentState extends State<DashBoardContent> {
                           return const Text("Loading");
                         }
                       }),
-                  largeVertical,
+                  extraLargeVertical,
                   FutureBuilder<List<Story>>(
                       future: futureStories,
                       builder: (context, snapshot) {

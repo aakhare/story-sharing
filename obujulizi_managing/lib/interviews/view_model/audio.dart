@@ -115,8 +115,8 @@ class AudioInterviewState extends State<AudioInterview> {
         name: "audio_interview",
         link:
             "https://testbucket63419.s3.us-west-1.amazonaws.com/${widget.surl}",
-        ext: "m4a",
-        mimeType: MimeType.m4a);
+        ext: "mp3",
+        mimeType: MimeType.mp3);
     log(path);
   }
 
