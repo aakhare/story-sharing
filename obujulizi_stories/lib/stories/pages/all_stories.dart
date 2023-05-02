@@ -125,7 +125,7 @@ class BuildStoriesState extends State<BuildStories> {
                             const Divider(color: lightGrey),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(story.tags),
+                              child: Text(story.tags, style: bodyText2),
                             )
                           ]),
                       onTap: () {

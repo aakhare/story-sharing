@@ -39,7 +39,7 @@ class ViewStoryState extends State<ViewStory> {
                 smallVertical,
                 Text(widget.caption, style: bodyText1),
                 extraLargeVertical,
-                Text(widget.content, style: bodyText2)
+                Text(widget.content, style: bodyText4)
               ]))),
     );
   }
