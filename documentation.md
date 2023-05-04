@@ -417,8 +417,15 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     
     This endpoint will be used to view interview details for a particular interview. 
     
+    #### When the bucket is PUBLIC:
+    
     Note that for the interview_content field, frontend will recieve the file key to the S3 bucket. Add this https://testbucket63419.s3.us-west-1.amazonaws.com/ to the front of the file key to obtain the full url of the interview. 
     For example, if the file key from the interview_content field is `990e5e3a-a8af-43ae-ad03-c7fdda1e5e84_Interviews/video/e83d3ea0-a8c8-4387-b6a3-65550685dae1.mp4` then the full url for this interview will be https://testbucket63419.s3.us-west-1.amazonaws.com/990e5e3a-a8af-43ae-ad03-c7fdda1e5e84_Interviews/video/e83d3ea0-a8c8-4387-b6a3-65550685dae1.mp4
+    
+    #### When the bucket is PRIVATE:
+    
+    In this case, the frontend will use the recieved file key from the interview_content field to pass as request body to the getPreSignedUrl endpoint (see below for more details). 
+    
     
     object sent by frontend:
     
@@ -445,7 +452,28 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
- 4. #### `updateInterviewStatus`
+ 4. #### `getPreSignedURL`
+     
+    endpoint url: https://xycaafoxihceu23pcnlbb2n72u0oboae.lambda-url.us-west-1.on.aws/
+    
+    This endpoint will be used to download interview content from the prvivate S3 Bucket. The frontend will pass in the file key for the interview they want to access (this information will be available throug hthe interview_content field given from the viewInterviewDetails endpoint). In response, the backend will return a signed url, which the frontend will use to download the file contents of the interview. 
+    
+    object sent by frontend: 
+    
+    ```JSON 
+    {
+      "interviewFileKey": String
+    }
+    ```
+    
+    object returned by backend: 
+    
+    ```JSON 
+    {
+      "interviewSignedURL": String
+    }
+ 
+ 5. #### `updateInterviewStatus`
 
     endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/interviews/update-status
     
@@ -469,7 +497,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
     
- 5. #### `udpateInterviewFlag` 
+ 6. #### `udpateInterviewFlag` 
     
     endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/interviews/update-flag
     
@@ -493,7 +521,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
     }
     ```
       
- 6. #### `createStory`
+ 7. #### `createStory`
     
     endpoint url: https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/stories/create
     
@@ -523,7 +551,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
      }
      ```
      
-  7. #### `getStoryDraftTitles`
+  8. #### `getStoryDraftTitles`
    
   endpoint url: https://3mitxjbibzqtrn4c4eermo574m0dmyss.lambda-url.us-west-1.on.aws/
   
@@ -540,7 +568,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   ]
   ```
     
-  8. #### `getStoryDrafts`
+  9. #### `getStoryDrafts`
   
   endpoint url: https://atofxysuihvyatot44tk5vhtuy0qlmtw.lambda-url.us-west-1.on.aws/
   
@@ -562,7 +590,7 @@ The `story_id` will be auto-generated, and an existing `interview_id` and `profi
   ]
   ```
   
-  9. ### `updateStoryDrafts`
+  10. ### `updateStoryDrafts`
   
   endpoint url:  https://0qwamyy66l.execute-api.us-west-1.amazonaws.com/dev/stories/update
   
