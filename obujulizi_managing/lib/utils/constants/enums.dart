@@ -1,0 +1,3 @@
+enum AccountOptions {
+  logout,
+}
