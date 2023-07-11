@@ -96,55 +96,53 @@ class BuildStoriesState extends State<BuildStories> {
           ),
           onChanged: searchForStory),
           mediumVertical,
-      SizedBox(
-        height: 800,
-        child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: searchedStories.length,
-            itemBuilder: (context, index) {
-              final story = searchedStories[index];
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: white, boxShadow: kElevationToShadow[4]),
-                  child: ListTile(
-                      horizontalTitleGap: 50,
-                      title: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(story.title, style: headline3),
-                      ),
-                      subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(story.caption, style: bodyText1),
-                            ),
-                            largeVertical,
-                            const Divider(color: lightGrey),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(story.tags),
-                            )
-                          ]),
-                      onTap: () {
-                        Navigator.pushNamed(context, RoutesName.storyDetails,
-                                arguments: Story(
-                                    caption: story.caption,
-                                    content: story.content,
-                                    status: story.status,
-                                    storyId: story.storyId,
-                                    tags: story.tags,
-                                    title: story.title))
-                            .then((_) {
-                          setState(() {});
-                        });
-                      }),
-                ),
-              );
-            }),
-      ),
+      ListView.builder(
+          shrinkWrap: true,
+          physics: const ClampingScrollPhysics(),
+          itemCount: searchedStories.length,
+          itemBuilder: (context, index) {
+            final story = searchedStories[index];
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: white, boxShadow: kElevationToShadow[4]),
+                child: ListTile(
+                    horizontalTitleGap: 50,
+                    title: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(story.title, style: headline3),
+                    ),
+                    subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(story.caption, style: bodyText1),
+                          ),
+                          largeVertical,
+                          const Divider(color: lightGrey),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(story.tags),
+                          )
+                        ]),
+                    onTap: () {
+                      Navigator.pushNamed(context, RoutesName.storyDetails,
+                              arguments: Story(
+                                  caption: story.caption,
+                                  content: story.content,
+                                  status: story.status,
+                                  storyId: story.storyId,
+                                  tags: story.tags,
+                                  title: story.title))
+                          .then((_) {
+                        setState(() {});
+                      });
+                    }),
+              ),
+            );
+          }),
       mediumVertical
     ]);
   }

@@ -20,6 +20,7 @@ class _VideoInterviewState extends State<VideoInterview> {
   // ChewieController? _signatureChewieController;
 
   VideoPlayerController? _contentPlayerController;
+  // ignore: unused_field
   ChewieController? _contentChewieController;
 
   InterviewCreation interviewCreation = InterviewCreation();
